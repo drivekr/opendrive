@@ -179,6 +179,27 @@
     background: var(--surface); font-size: 15px; }
   .next-item small { color: var(--muted); font-weight: 700; letter-spacing: .08em; font-size: 12px; flex-shrink: 0; }
 
+  /* Bottleneck */
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 28px; }
+  .stat { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
+  .stat strong { display: block; font-size: clamp(26px, 4vw, 34px); letter-spacing: -0.02em; line-height: 1.2; }
+  .stat span { display: block; margin-top: 6px; font-size: 13px; color: var(--muted); line-height: 1.55; }
+  .sub { margin: 36px 0 4px; font-size: 19px; letter-spacing: -0.01em; }
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+  .compare p { margin: 0; font-size: 14px; color: var(--muted); }
+  .compare p strong { color: var(--text); }
+  .diagram { margin-top: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 8px 24px; }
+  .diagram ol { margin: 0; padding: 0; list-style: none; }
+  .diagram li { padding: 12px 0; font-weight: 700; font-size: 15px; color: var(--muted); display: flex; align-items: center; gap: 10px; }
+  .diagram li + li { border-top: 1px solid var(--border); }
+  .diagram li.now { color: var(--text); }
+  .diagram .pill { font-size: 11px; font-weight: 800; letter-spacing: .1em; background: var(--text); color: #fff; border-radius: 999px; padding: 3px 10px; flex-shrink: 0; }
+  .status.identified { background: var(--accent-soft); border-color: #BFDBFE; color: var(--accent); }
+  .status.identified .dot { background: var(--accent); }
+  .sources { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px; color: var(--muted); }
+  .sources a { color: var(--muted); }
+  .sources a:hover { color: var(--text); }
+
   footer { border-top: 1px solid var(--border); padding: 40px 0 64px; color: var(--muted); font-size: 14px; }
   footer .foot { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; align-items: center; }
   footer a { color: var(--muted); text-decoration: none; font-weight: 600; }
@@ -188,6 +209,8 @@
     .hero { padding: 64px 0 48px; }
     section.block { padding: 52px 0; }
     .two-col { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: 1fr; }
+    .compare { grid-template-columns: 1fr; }
     .help-grid { grid-template-columns: 1fr 1fr; }
     .card { padding: 24px; }
     .next-item { flex-direction: column; align-items: flex-start; }
@@ -222,7 +245,85 @@
     <div class="scroll-hint" aria-hidden="true">↓</div>
   </div>
 
-  <!-- 2. Why -->
+  <!-- 2. A real bottleneck -->
+  <section class="block" id="bottleneck" aria-labelledby="bottleneck-title">
+    <div class="wrap">
+      <div class="eyebrow">A REAL BOTTLENECK</div>
+      <h2 id="bottleneck-title">병목은 기술이 아니라<br />제도에서 생기기도 합니다.</h2>
+      <p class="lead">
+        한국에서 자율주행이 늦어지는 이유가 항상 기술 때문은 아닙니다.
+        테슬라 FSD 사례는 <strong>같은 소프트웨어도 적용되는 인증 체계에 따라 쓸 수 있는 기능이 달라진다</strong>는 것을 보여줍니다.
+      </p>
+
+      <div class="status-row">
+        <span class="status-label">STATUS</span>
+        <span class="status identified"><span class="dot" aria-hidden="true"></span>IDENTIFIED</span>
+        <span style="font-size:13px; color:var(--muted);">병목 조문 특정됨 — 국토부 2026.8.31 답변</span>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><strong>79.3%</strong><span>국내 운행 테슬라 중 FSD 사용 불가 (22.9만 대 기준, 2026년 8월)</span></div>
+        <div class="stat"><strong>9.6%</strong><span>주력 차종 Model Y의 FSD 사용 가능 비율</span></div>
+        <div class="stat"><strong>85건</strong><span>FSD 무단 활성화 시도 (2026년 4월 28일 기준)</span></div>
+      </div>
+
+      <h3 class="sub">Same software. Different rules.</h3>
+      <div class="compare">
+        <div class="panel know">
+          <h3>미국산 TESLA</h3>
+          <p>한미 FTA <strong>안전기준 상호인정</strong>으로 FSD 사용 가능. 국토부가 FSD를 별도로 승인한 것이 아니다.</p>
+        </div>
+        <div class="panel dont">
+          <h3>중국 상하이산 MODEL 3 / Y</h3>
+          <p>FTA 예외 적용 불가. <strong>국내 안전기준을 직접 충족</strong>해야 해서 현재 FSD 사용 불가.</p>
+        </div>
+      </div>
+
+      <h3 class="sub">Where exactly is the bottleneck?</h3>
+      <p class="lead" style="font-size:16px;">
+        국토교통부가 밝힌 충돌 지점은 <strong>차로 변경</strong>이다.
+        현행 국내 기준은 차로 변경 시 운전자가 방향지시등을 직접 조작하는 방식을 전제로 한다.
+        반면 FSD는 시스템이 스스로 차로 변경을 시작할 수 있다.
+        조문까지 특정됐다: <strong>자동차규칙 제89조 별표6의2 제10호</strong>.
+      </p>
+      <div class="diagram">
+        <ol>
+          <li>Technology ready</li>
+          <li>Vehicle &amp; software ready</li>
+          <li>International rules evolving</li>
+          <li class="now"><span class="pill">NOW</span> Korean safety regulation — current bottleneck</li>
+          <li>Deployment to consumers</li>
+        </ol>
+      </div>
+      <p class="lead" style="font-size:16px; margin-top:20px;">
+        국토부는 현행 DCAS 국제기준만으로 FSD의 도심 기능을 전부 수용하기 어렵다고 밝혔다.
+        그 이상의 기술을 위한 <strong>별도 정책연구나 전담 TF는 아직 없다</strong>.
+        핵심 질문은 이것이다: 새로운 기술을 평가할 규칙이 기술 변화 속도를 따라가고 있는가.
+      </p>
+
+      <h3 class="sub">Consumers are already feeling the gap</h3>
+      <p class="lead" style="font-size:16px;">
+        쓸 수 없는 차량에서 FSD를 비공식적으로 활성화하려 한 사례가 <strong>85건</strong> 확인됐다.
+        더불어민주당 박용갑 의원은 수사 의뢰나 원격 차단 같은 사후 대응만으로는 한계가 있다며 제도 개선 필요성을 지적했다.
+      </p>
+
+      <div class="quote">기술을 막을 것인가, 허용할 것인가가 아니다. 안전성을 검증하면서도 새로운 기술을 빠르게 평가할 수 있는 제도를 어떻게 만들 것인가.</div>
+
+      <div class="cta-row">
+        <a class="btn primary" href="https://github.com/drivekr/opendrive/issues" target="_blank" rel="noopener">GitHub에서 이어 조사하기</a>
+        <a class="btn" href="#investigation">Current Investigation 보기</a>
+      </div>
+
+      <div class="sources">
+        Sources —
+        <a href="https://v.daum.net/v/9ZP6yT6bUZ" target="_blank" rel="noopener">국토부가 밝힌 FSD 국내 기준 충돌 지점 (블로터, 2026.9)</a> ·
+        <a href="https://www.yna.co.kr/view/AKR20260501058600003" target="_blank" rel="noopener">FSD 무단 활성화 85건 (연합뉴스, 2026.5.4)</a> ·
+        <a href="https://www.hankyung.com/article/202609142445g" target="_blank" rel="noopener">국내 Tesla FSD 적용 현황 (한국경제, 2026.9.15)</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Why -->
   <section class="block" aria-labelledby="why-title">
     <div class="wrap">
       <div class="eyebrow">WHY OPENDRIVE</div>
@@ -238,7 +339,7 @@
     </div>
   </section>
 
-  <!-- 3. Current Investigation -->
+  <!-- 4. Current Investigation -->
   <section class="block" id="investigation" aria-labelledby="inv-title">
     <div class="wrap">
       <div class="eyebrow">CURRENT INVESTIGATION</div>
@@ -267,10 +368,10 @@
         <div class="meta">답을 정해놓고 조사하지 않습니다. 확인되지 않았다면 UNKNOWN으로 남깁니다. · Last updated Oct 2026</div>
       </article>
 
-      <div class="next" aria-label="다음 조사 예정">
+      <div class="next" aria-label="후속 조사">
         <div class="next-item">
-          <span><strong>NEXT — Tesla FSD.</strong> 왜 차량 생산지에 따라 한국에서 제공 기능이 다를까?</span>
-          <small>PLANNED</small>
+          <span><strong>Tesla FSD.</strong> 왜 차량 생산지에 따라 한국에서 제공 기능이 다를까? <a href="#bottleneck">구체적 병목 보기 →</a></span>
+          <small>INVESTIGATING</small>
         </div>
         <div class="next-item">
           <span><strong>NEXT — UN R171 / DCAS.</strong> 국제 기준과 한국 제도는 어디까지 정렬되어 있을까?</span>
@@ -280,7 +381,7 @@
     </div>
   </section>
 
-  <!-- 4. Known / Unknown -->
+  <!-- 5. Known / Unknown -->
   <section class="block" aria-labelledby="known-title">
     <div class="wrap">
       <div class="eyebrow">EVIDENCE</div>
@@ -308,7 +409,7 @@
     </div>
   </section>
 
-  <!-- 5. Flow -->
+  <!-- 6. Flow -->
   <section class="block" aria-labelledby="flow-title">
     <div class="wrap">
       <div class="eyebrow">HOW WE WORK</div>
@@ -331,7 +432,7 @@
     </div>
   </section>
 
-  <!-- 6. AI Agents -->
+  <!-- 7. AI Agents -->
   <section class="block" aria-labelledby="ai-title">
     <div class="wrap">
       <div class="eyebrow">AI AGENTS</div>
@@ -355,7 +456,7 @@
     </div>
   </section>
 
-  <!-- 7. Help Wanted -->
+  <!-- 8. Help Wanted -->
   <section class="block" aria-labelledby="help-title">
     <div class="wrap">
       <div class="eyebrow">HELP WANTED</div>
