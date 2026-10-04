@@ -249,10 +249,10 @@
   <section class="block" id="bottleneck" aria-labelledby="bottleneck-title">
     <div class="wrap">
       <div class="eyebrow">A REAL BOTTLENECK</div>
-      <h2 id="bottleneck-title">병목은 기술이 아니라<br />제도에서 생기기도 합니다.</h2>
+      <h2 id="bottleneck-title">기술은 움직였다.<br />제도는 아직 따라오지 못했다.</h2>
       <p class="lead">
-        한국에서 자율주행이 늦어지는 이유가 항상 기술 때문은 아닙니다.
-        테슬라 FSD 사례는 <strong>같은 소프트웨어도 적용되는 인증 체계에 따라 쓸 수 있는 기능이 달라진다</strong>는 것을 보여줍니다.
+        한국의 현행 조향 안전기준은 차로변경을 <strong>운전자가 시작하는 기능</strong>으로 설계되어 있다.
+        하지만 최신 소프트웨어와 국제기준은 이미 <strong>시스템이 시작하는 차로변경</strong>을 전제로 움직이고 있다.
       </p>
 
       <div class="status-row">
@@ -279,26 +279,58 @@
         </div>
       </div>
 
-      <h3 class="sub">Where exactly is the bottleneck?</h3>
+      <h3 class="sub">1차 병목 — 규칙의 설계 방식</h3>
       <p class="lead" style="font-size:16px;">
-        국토교통부가 밝힌 충돌 지점은 <strong>차로 변경</strong>이다.
-        현행 국내 기준은 차로 변경 시 운전자가 방향지시등을 직접 조작하는 방식을 전제로 한다.
-        반면 FSD는 시스템이 스스로 차로 변경을 시작할 수 있다.
-        조문까지 특정됐다: <strong>자동차규칙 제89조 별표6의2 제10호</strong>.
+        현행 <strong>자동차규칙 제89조 2항</strong>은 조향장치가 <strong>별표 6의2</strong> 기준을 따라야 한다고 정한다.
+        기존 범주 C 자동명령조향기능은 차로변경을 이렇게 가정한다:
+        운전자가 방향지시기를 <strong>수동으로 조작</strong>하면 시스템이 차로변경을 수행한다.
+        박상혁 의원실 서면질의에 대해 국토부도 바로 이 조항 때문에 중국산 Model 3·Y에 시스템 주도 차로변경을 그대로 적용하기 어렵다고 설명했다.
+      </p>
+      <div class="compare">
+        <div class="panel dont">
+          <h3>한국 현행 규칙</h3>
+          <p><strong>Driver initiates → System assists.</strong> 운전자가 방향지시기를 직접 조작하고, 시스템이 보조한다.</p>
+        </div>
+        <div class="panel know">
+          <h3>최신 소프트웨어</h3>
+          <p><strong>System decides → initiates → Driver supervises.</strong> 경로와 교통을 판단해 시스템이 직접 시작하고, 운전자가 감독한다.</p>
+        </div>
+      </div>
+
+      <h3 class="sub">국제기준은 이미 움직였다</h3>
+      <div class="diagram">
+        <ol>
+          <li>한국 규칙 — 운전자가 방향지시등 → 시스템 차로변경</li>
+          <li>UN R171.01 (2025.9 발효) — system-initiated lane change 인증 가능</li>
+          <li>UN R171.02 (2026.6 WP.29 채택) — 적용 범위 정교화</li>
+          <li class="now"><span class="pill">NOW</span> 한국 — 국내 법·안전관리체계 전환 중</li>
+        </ol>
+      </div>
+
+      <h3 class="sub">2차 병목 — 인증하고 관리할 pipeline</h3>
+      <p class="lead" style="font-size:16px;">
+        별표 6의2 하나를 고치는 것으로 끝나지 않는다.
+        현행 자동차관리법에는 DCAS의 <strong>법적 정의와 제작·운행 관련 제도가 없다</strong>.
+        필요한 것은 방향지시등 자동화가 아니라 안전관리계획, 기준 적합성, 사고 관리·보고, 조사·시정까지 포함한 <strong>전체 framework</strong>다.
+        국토부는 DCAS만으로 도심 기능 전체를 수용하기 어렵다고도 밝혔다.
+      </p>
+      <p class="lead" style="font-size:16px;">
+        2026년 7월 28일 송기헌 의원 등 11인이 그 제도를 만드는 <strong>자동차관리법 개정안(의안 2220196)</strong>을 발의했고,
+        7월 29일 국토교통위원회에 회부됐다. 아직 완성된 제도가 아니다.
+        아래 일정은 국토부가 박상혁 의원실 서면질의에 밝힌 공식 절차다.
       </p>
       <div class="diagram">
         <ol>
-          <li>Technology ready</li>
-          <li>Vehicle &amp; software ready</li>
-          <li>International rules evolving</li>
-          <li class="now"><span class="pill">NOW</span> Korean safety regulation — current bottleneck</li>
-          <li>Deployment to consumers</li>
+          <li>국제기준 발효 → 적용 차종·시기 의견수렴, 약 6개월</li>
+          <li>안전기준 입안, 약 6개월</li>
+          <li>입법예고·규제심사·법제처 심사, 최소 3–4개월</li>
+          <li class="now"><span class="pill">TOTAL</span> 약 15–16개월 — 그 사이 기술과 국제기준은 다시 바뀐다</li>
         </ol>
       </div>
       <p class="lead" style="font-size:16px; margin-top:20px;">
-        국토부는 현행 DCAS 국제기준만으로 FSD의 도심 기능을 전부 수용하기 어렵다고 밝혔다.
-        그 이상의 기술을 위한 <strong>별도 정책연구나 전담 TF는 아직 없다</strong>.
-        핵심 질문은 이것이다: 새로운 기술을 평가할 규칙이 기술 변화 속도를 따라가고 있는가.
+        기술을 시험할 기준이 없어서가 아니라,
+        <strong>새 국제기준을 국내에서 인증하고 관리할 regulatory pipeline이 아직 완성되지 않았다</strong>.
+        OpenDrive가 추적하려는 것은 바로 이 간격이다.
       </p>
 
       <h3 class="sub">Consumers are already feeling the gap</h3>
@@ -307,7 +339,7 @@
         더불어민주당 박용갑 의원은 수사 의뢰나 원격 차단 같은 사후 대응만으로는 한계가 있다며 제도 개선 필요성을 지적했다.
       </p>
 
-      <div class="quote">기술을 막을 것인가, 허용할 것인가가 아니다. 안전성을 검증하면서도 새로운 기술을 빠르게 평가할 수 있는 제도를 어떻게 만들 것인가.</div>
+      <div class="quote">How can Korea reduce the time from “international standard ready” to “safe deployment on Korean roads”?<br /><span style="font-weight:400; font-size:15px;">재는 것은 찬반이 아니라 Regulatory Lead Time — 국제기준 발표 → 국내 검토 → 법령 반영 → 인증 가능 → 실제 출시다. 다음 조사: 이 15–16개월을 줄일 수 있는 단계는 어디인가.</span></div>
 
       <div class="cta-row">
         <a class="btn primary" href="https://github.com/drivekr/opendrive/issues" target="_blank" rel="noopener">GitHub에서 이어 조사하기</a>
@@ -318,7 +350,11 @@
         Sources —
         <a href="https://v.daum.net/v/9ZP6yT6bUZ" target="_blank" rel="noopener">국토부가 밝힌 FSD 국내 기준 충돌 지점 (블로터, 2026.9)</a> ·
         <a href="https://www.yna.co.kr/view/AKR20260501058600003" target="_blank" rel="noopener">FSD 무단 활성화 85건 (연합뉴스, 2026.5.4)</a> ·
-        <a href="https://www.hankyung.com/article/202609142445g" target="_blank" rel="noopener">국내 Tesla FSD 적용 현황 (한국경제, 2026.9.15)</a>
+        <a href="https://www.hankyung.com/article/202609142445g" target="_blank" rel="noopener">국내 Tesla FSD 적용 현황 (한국경제, 2026.9.15)</a> ·
+        <a href="https://www.law.go.kr/LSW/lsLinkCommonInfo.do?lsJoLnkSeq=1031833383" target="_blank" rel="noopener">자동차규칙 제89조 (국가법령정보센터)</a> ·
+        <a href="https://eur-lex.europa.eu/eli/reg/2025/1899/oj" target="_blank" rel="noopener">UN R171.01 (EUR-Lex)</a> ·
+        <a href="https://community.lawmaking.go.kr/gcom/nsmLmSts/out/2220196/detailRP" target="_blank" rel="noopener">자동차관리법 개정안 의안 2220196 (국민참여입법센터)</a> ·
+        <a href="https://v.daum.net/v/UaHa6f71e4" target="_blank" rel="noopener">박상혁 의원 질의와 국토부 답변·도입 시기 (블로터)</a>
       </div>
     </div>
   </section>
