@@ -4,488 +4,216 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>OpenDrive Korea — 한국에서 합법적인 자율주행을 최대한 빠르게</title>
-<meta name="description" content="해외에서 이미 상용화된 자율주행 기술이 한국에서는 왜 늦게 도입되는지 공개적으로 조사하고, 해결될 때까지 추적하는 오픈 리서치 프로젝트입니다." />
+<meta name="description" content="국제기준이 한국 도로에 닿기까지, 막힌 지점을 근거로 추적합니다." />
 <meta property="og:title" content="OpenDrive Korea" />
-<meta property="og:description" content="한국에서 합법적인 자율주행을 최대한 빠르게. 해외에서는 가능한 기술이 한국에서는 왜 늦어지는지 공개적으로 조사합니다." />
+<meta property="og:description" content="국제기준이 한국 도로에 닿기까지, 막힌 지점을 근거로 추적합니다." />
 <meta property="og:type" content="website" />
 <style>
   :root {
-    --bg: #FAFAFA;
-    --surface: #FFFFFF;
-    --text: #111111;
-    --muted: #6B7280;
-    --border: #E5E7EB;
-    --accent: #1D4ED8;
-    --accent-soft: #EFF6FF;
-    --radius: 12px;
-    --max: 880px;
+    --bg: #FAFAFA; --surface: #FFFFFF; --text: #111111; --muted: #606975;
+    --border: #E3E6EB; --accent: #1D4ED8; --accent-soft: #EFF6FF;
+    --max: 1040px;
     --font: -apple-system, BlinkMacSystemFont, "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   }
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--font);
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-    letter-spacing: -0.01em;
-  }
-  a { color: inherit; }
-  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
-
-  /* Header */
-  header {
-    position: sticky; top: 0; z-index: 10;
-    background: rgba(250,250,250,.9);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav { max-width: var(--max); margin: 0 auto; padding: 14px 24px;
-    display: flex; align-items: center; justify-content: space-between; }
-  .brand { font-weight: 800; font-size: 14px; letter-spacing: .08em; text-decoration: none; }
-  .nav-links { display: flex; gap: 16px; font-size: 14px; }
-  .nav-links a { color: var(--muted); text-decoration: none; font-weight: 600; }
-  .nav-links a:hover { color: var(--text); }
-
-  /* Hero */
-  .hero { padding: 96px 0 72px; }
-  .hero h1 {
-    margin: 0 0 20px;
-    font-size: clamp(34px, 6vw, 56px);
-    line-height: 1.18;
-    letter-spacing: -0.03em;
-    font-weight: 800;
-  }
-  .hero p { margin: 0 0 8px; font-size: 18px; color: var(--muted); }
-  .hero p strong { color: var(--text); }
-  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
-  .btn {
-    display: inline-block;
-    padding: 12px 20px;
-    border-radius: 8px;
-    font-weight: 700; font-size: 15px;
-    text-decoration: none;
-    border: 1px solid var(--border);
-    background: var(--surface);
-  }
-  .btn.primary { background: var(--text); color: #fff; border-color: var(--text); }
-  .btn.primary:hover { background: #000; }
-  .btn:hover { border-color: var(--text); }
-  .scroll-hint { margin-top: 56px; color: var(--muted); font-size: 20px; }
-
-  /* Sections */
-  section.block { padding: 72px 0; border-top: 1px solid var(--border); }
-  .eyebrow {
-    font-size: 12px; font-weight: 800; letter-spacing: .14em;
-    color: var(--muted); margin-bottom: 16px;
-  }
-  h2 {
-    margin: 0 0 20px;
-    font-size: clamp(26px, 4vw, 36px);
-    line-height: 1.3;
-    letter-spacing: -0.02em;
-  }
-  .lead { font-size: 18px; color: var(--muted); max-width: 62ch; }
-  .lead strong, p strong { color: var(--text); }
-  .quote {
-    margin: 28px 0 0; padding: 20px 22px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-left: 4px solid var(--text);
-    border-radius: 0 var(--radius) var(--radius) 0;
-    font-weight: 700; font-size: 17px;
-  }
-
-  /* Investigation card */
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 32px;
-    margin-top: 28px;
-  }
-  .card .num { font-size: 13px; font-weight: 800; letter-spacing: .12em; color: var(--muted); }
-  .card h3 { margin: 10px 0 12px; font-size: clamp(22px, 3.6vw, 30px); line-height: 1.4; letter-spacing: -0.02em; }
-  .card .desc { color: var(--muted); margin: 0 0 24px; max-width: 60ch; }
-  .status-row { display: flex; align-items: center; gap: 12px; margin: 20px 0; }
-  .status-label { font-size: 12px; font-weight: 800; letter-spacing: .12em; color: var(--muted); }
-  .status {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-weight: 800; font-size: 15px; letter-spacing: .04em;
-    padding: 8px 14px; border-radius: 999px;
-    background: #F3F4F6; color: #374151; border: 1px solid var(--border);
-  }
-  .status .dot { width: 9px; height: 9px; border-radius: 50%; background: #9CA3AF; }
-  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 24px; }
-  .tag {
-    font-size: 13px; font-weight: 600;
-    padding: 6px 12px; border-radius: 999px;
-    background: var(--bg); border: 1px solid var(--border); color: #374151;
-  }
-  .card-link { font-weight: 800; color: var(--accent); text-decoration: none; }
-  .card-link:hover { text-decoration: underline; }
-  .meta { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border);
-    font-size: 13px; color: var(--muted); }
-
-  /* Known / Unknown */
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; }
-  .panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
-  .panel h3 { margin: 0 0 16px; font-size: 14px; letter-spacing: .1em; }
-  .panel ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 14px; font-size: 15px; }
-  .panel li { display: flex; gap: 10px; line-height: 1.6; }
-  .panel li .mark { font-weight: 800; flex-shrink: 0; }
-  .know .mark { color: var(--accent); }
-  .dont .mark { color: #D97706; }
-  .brand-line { margin-top: 20px; font-size: 14px; color: var(--muted); text-align: center; }
-
-  /* Flow */
-  .flow { margin-top: 28px; background: var(--surface); border: 1px solid var(--border);
-    border-radius: var(--radius); padding: 28px; }
-  .flow ol { margin: 0; padding: 0; list-style: none; }
-  .flow li { display: flex; gap: 14px; padding: 10px 0; font-weight: 700; font-size: 15px; }
-  .flow li + li { border-top: 1px dashed var(--border); }
-  .flow .step { min-width: 28px; height: 28px; border-radius: 50%;
-    background: var(--text); color: #fff;
-    display: inline-flex; align-items: center; justify-content: center;
-    font-size: 13px; flex-shrink: 0; margin-top: 1px; }
-  .flow li:last-child .step { background: var(--accent); }
-  .closed { margin-top: 28px; text-align: center; }
-  .closed p { color: var(--muted); margin: 0 0 8px; }
-  .closed strong { font-size: clamp(20px, 3.4vw, 28px); letter-spacing: -0.02em; }
-
-  /* AI */
-  .ai-box { background: var(--accent-soft); border: 1px solid #DBEAFE;
-    border-radius: var(--radius); padding: 28px; margin-top: 24px; }
-  .ai-box ul { margin: 16px 0 0; padding: 0; list-style: none;
-    display: flex; flex-wrap: wrap; gap: 8px; }
-  .ai-box li { background: #fff; border: 1px solid #DBEAFE; border-radius: 999px;
-    padding: 6px 12px; font-size: 13px; font-weight: 600; }
-
-  /* Help */
-  .help-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 24px; }
-  .help-card { background: var(--surface); border: 1px solid var(--border);
-    border-radius: var(--radius); padding: 18px; }
-  .help-card strong { display: block; font-size: 14px; margin-bottom: 4px; }
-  .help-card span { font-size: 13px; color: var(--muted); line-height: 1.5; display: block; }
-  .help-cta { text-align: center; margin-top: 32px; }
-  .help-cta p { color: var(--muted); }
-
-  /* Next */
-  .next { margin-top: 24px; display: grid; gap: 12px; }
-  .next-item { display: flex; justify-content: space-between; align-items: center; gap: 16px;
-    padding: 16px 20px; border: 1px solid var(--border); border-radius: var(--radius);
-    background: var(--surface); font-size: 15px; }
-  .next-item small { color: var(--muted); font-weight: 700; letter-spacing: .08em; font-size: 12px; flex-shrink: 0; }
-
-  /* Bottleneck */
-  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 28px; }
-  .stat { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
-  .stat strong { display: block; font-size: clamp(26px, 4vw, 34px); letter-spacing: -0.02em; line-height: 1.2; }
-  .stat span { display: block; margin-top: 6px; font-size: 13px; color: var(--muted); line-height: 1.55; }
-  .sub { margin: 36px 0 4px; font-size: 19px; letter-spacing: -0.01em; }
-  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
-  .compare p { margin: 0; font-size: 14px; color: var(--muted); }
-  .compare p strong { color: var(--text); }
-  .diagram { margin-top: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 8px 24px; }
-  .diagram ol { margin: 0; padding: 0; list-style: none; }
-  .diagram li { padding: 12px 0; font-weight: 700; font-size: 15px; color: var(--muted); display: flex; align-items: center; gap: 10px; }
-  .diagram li + li { border-top: 1px solid var(--border); }
-  .diagram li.now { color: var(--text); }
-  .diagram .pill { font-size: 11px; font-weight: 800; letter-spacing: .1em; background: var(--text); color: #fff; border-radius: 999px; padding: 3px 10px; flex-shrink: 0; }
-  .status.identified { background: var(--accent-soft); border-color: #BFDBFE; color: var(--accent); }
-  .status.identified .dot { background: var(--accent); }
-  .sources { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px; color: var(--muted); }
-  .sources a { color: var(--muted); }
-  .sources a:hover { color: var(--text); }
-
-  /* Lead time */
-  .metric { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0 8px; }
-  .metric-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 20px; min-width: 220px; }
-  .metric-label { display: block; font-size: 12px; font-weight: 800; letter-spacing: .12em; color: var(--muted); margin-bottom: 4px; }
-  .metric-item strong { font-size: clamp(22px, 3.4vw, 30px); letter-spacing: -0.02em; }
-  .metric-note { display: block; margin-top: 4px; font-size: 13px; color: var(--muted); }
-  .tabs { display: flex; gap: 8px; margin: 28px 0 0; flex-wrap: wrap; }
-  .tab { padding: 9px 16px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); font-weight: 700; font-size: 14px; cursor: pointer; color: var(--muted); }
-  .tab[aria-selected="true"] { background: var(--text); color: #fff; border-color: var(--text); }
-  .tl-scroll { overflow-x: auto; margin-top: 16px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
-  .tl-inner { position: relative; min-width: 1100px; padding: 34px 28px 20px; }
-  .tl-years { position: relative; height: 18px; margin-left: 92px; }
-  .tl-year { position: absolute; transform: translateX(-50%); font-size: 11px; font-weight: 800; color: var(--muted); letter-spacing: .08em; }
-  .lane { display: flex; padding: 12px 0 4px; border-top: 1px dashed var(--border); }
-  .lane-name { width: 92px; flex-shrink: 0; font-size: 11px; font-weight: 800; letter-spacing: .08em; color: var(--muted); padding-top: 4px; }
-  .track { position: relative; flex: 1; height: 150px; }
-  .track::before { content: ""; position: absolute; left: 0; right: 0; top: 7px; height: 2px; background: var(--border); }
-  .node .stem { position: absolute; left: 50%; width: 1px; background: var(--border); z-index: -1; pointer-events: none; }
-  .lane.jp .track::before { height: 1px; }
-  .node { position: absolute; top: 0; transform: translateX(-50%); background: none; border: 0; cursor: pointer; padding: 0; width: 132px; text-align: center; font-family: inherit; z-index: 1; }
-  .node .d { width: 14px; height: 14px; border-radius: 50%; margin: 1px auto 5px; background: #fff; border: 3px solid var(--text); }
-  .node.done .d { background: #16A34A; border-color: #16A34A; }
-  .node.progress .d { background: var(--accent); border-color: var(--accent); }
-  .node.tbd .d { background: #fff; border: 2px dashed #9CA3AF; width: 13px; height: 13px; }
-  .node.approx .d { border-style: dashed; }
-  .lane.jp .node .d { width: 11px; height: 11px; border-width: 2px; }
-  .node .t { display: block; font-size: 11px; font-weight: 700; line-height: 1.4; color: var(--text); }
-  .node .dt { display: block; font-size: 10px; color: var(--muted); }
-  .node .tip { display: none; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); margin-bottom: 8px; background: var(--text); color: #fff; font-size: 12px; font-weight: 600; padding: 6px 10px; border-radius: 6px; white-space: nowrap; z-index: 5; }
-  .node:hover .tip, .node:focus-visible .tip { display: block; }
-  .lane-note { font-size: 12px; color: var(--muted); margin: 6px 0 0; }
-  .org { margin-top: 20px; display: grid; gap: 12px; }
-  .org-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 20px; }
-  .org-item strong { display: block; font-size: 15px; }
-  .org-item span { font-size: 13px; color: var(--muted); }
-  .org-item a { color: var(--accent); font-weight: 700; text-decoration: none; }
-  .org-item a:hover { text-decoration: underline; }
-  .org-sep { text-align: center; color: var(--muted); font-weight: 800; padding: 1px 0; }
-  .doc-list { margin: 10px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; font-size: 15px; }
-  .doc-list a { color: var(--accent); font-weight: 600; text-decoration: none; }
-  .doc-list a:hover { text-decoration: underline; }
-  .drawer-back { position: fixed; inset: 0; background: rgba(0,0,0,.25); z-index: 40; }
-  .drawer { position: fixed; top: 0; right: 0; bottom: 0; width: min(400px, 100%); background: var(--surface); border-left: 1px solid var(--border); z-index: 41; overflow-y: auto; padding: 24px 24px 48px; box-shadow: -12px 0 32px rgba(0,0,0,.08); }
-  .drawer-close { float: right; border: 1px solid var(--border); background: var(--bg); border-radius: 8px; padding: 6px 12px; font-weight: 700; font-size: 13px; cursor: pointer; }
-  .drawer h3 { margin: 12px 0 4px; font-size: 22px; letter-spacing: -0.01em; line-height: 1.35; }
-  .drawer dl { display: grid; grid-template-columns: 118px 1fr; gap: 10px 12px; font-size: 14px; margin: 20px 0 0; }
-  .drawer dt { color: var(--muted); font-weight: 700; font-size: 12px; letter-spacing: .05em; }
-  .drawer dd { margin: 0; line-height: 1.6; }
-  .drawer dd a { color: var(--accent); font-weight: 600; text-decoration: none; }
-  .drawer dd a:hover { text-decoration: underline; }
-  @media (max-width: 680px) {
-    .drawer { top: auto; left: 0; right: 0; bottom: 0; width: 100%; max-height: 80vh; border-left: 0; border-top: 1px solid var(--border); border-radius: 16px 16px 0 0; }
-    .metric-item { min-width: 0; flex: 1 1 100%; }
-  }
-
-  .wiki-content p, .wiki-content li { font-size: 16px; color: var(--muted); }
-  .wiki-content a, .stat a, .lane-note a, .doc-list a, .org-item a, .action-list a { color: var(--accent); }
-  .org-item p, .doc-list p { margin: 6px 0 0; font-size: 13px; color: var(--muted); }
-  .doc-list li { padding: 16px 0; border-bottom: 1px solid var(--border); }
-  .field-label { font-weight: 700; }
-  .action-list { list-style: none; padding: 0; }
-  .action-list > li { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
-  .action-list p { margin: 6px 0 0; font-size: 13px; color: var(--muted); }
-  .evidence-notes { margin-top: 28px; border-top: 1px solid var(--border); padding-top: 20px; }
-  .evidence-notes summary { cursor: pointer; font-weight: 700; }
-  .stat span { display: block; margin-top: 5px; }
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font); line-height: 1.6; letter-spacing: -.02em; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-underline-offset: 3px; }
+  button { font: inherit; color: inherit; cursor: pointer; }
+  button:disabled { cursor: default; opacity: .55; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
   [hidden] { display: none !important; }
-
-  footer { border-top: 1px solid var(--border); padding: 40px 0 64px; color: var(--muted); font-size: 14px; }
-  footer .foot { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; align-items: center; }
-  footer a { color: var(--muted); text-decoration: none; font-weight: 600; }
-  footer a:hover { color: var(--text); }
-
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 28px; }
+  header { border-bottom: 1px solid var(--border); }
+  .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 64px; }
+  .brand { font-weight: 800; font-size: 13px; letter-spacing: .08em; text-decoration: none; }
+  .participate { font-size: 13px; font-weight: 600; color: var(--muted); text-decoration: none; }
+  .participate:hover, footer a:hover { color: var(--accent); }
+  .mission { padding-top: 44px; padding-bottom: 36px; }
+  .eyebrow { margin: 0 0 12px; font-size: 11px; letter-spacing: .14em; font-weight: 700; color: var(--muted); }
+  h1 { margin: 0; font-size: clamp(30px, 4.3vw, 48px); font-weight: 800; line-height: 1.23; letter-spacing: -.04em; }
+  .mission p:last-child { margin: 18px 0 0; color: var(--muted); font-size: 16px; text-wrap: balance; }
+  .timeline { padding: 28px 0 48px; border-top: 1px solid var(--border); }
+  .topic { display: flex; align-items: baseline; gap: 14px; margin-bottom: 16px; }
+  .topic .eyebrow { margin: 0; }
+  h2 { margin: 0; font-size: 24px; line-height: 1.3; letter-spacing: -.025em; }
+  .current-state { padding: 16px 18px; border: 1px solid #DBE6FA; background: var(--accent-soft); border-radius: 12px; }
+  .current-heading { margin: 0 0 10px; font-size: 12px; font-weight: 700; color: var(--accent); }
+  .outcomes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .outcome { display: flex; align-items: center; justify-content: space-between; gap: 14px; width: 100%; background: transparent; border: 0; padding: 0; text-align: left; font-size: 14px; font-weight: 600; }
+  .outcome .result { flex-shrink: 0; font-size: 12px; font-weight: 500; color: var(--accent); }
+  .outcome:hover .outcome-name { text-decoration: underline; text-underline-offset: 3px; }
+  .measurement { margin: 10px 0 0; color: var(--muted); font-size: 12px; }
+  .measurement details { display: inline; }
+  .measurement summary { display: inline; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+  .measurement details p { margin: 6px 0 0; max-width: 74ch; }
+  .measurement a { color: var(--accent); }
+  .toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 24px 0 14px; }
+  .view-title { margin: 0; font-size: 15px; font-weight: 700; }
+  .controls { display: flex; gap: 8px; }
+  .control { padding: 7px 12px; border: 1px solid var(--border); border-radius: 7px; background: var(--surface); font-size: 13px; font-weight: 600; }
+  .control:hover { border-color: var(--accent); }
+  .control[aria-pressed="true"] { color: var(--accent); border-color: #B7CCFA; background: var(--accent-soft); }
+  .view-note { margin: 0 0 18px; font-size: 12px; color: var(--muted); }
+  .event-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; }
+  .event-list > li { position: relative; padding-left: 22px; }
+  .event-list > li::before { content: ""; position: absolute; left: 4px; top: 28px; width: 7px; height: 7px; background: #9AA1AC; border-radius: 50%; }
+  .event-list > li::after { content: ""; position: absolute; left: 7px; width: 1px; top: 43px; bottom: -14px; background: var(--border); }
+  .event-list > li:last-child::after { display: none; }
+  .event-card { display: block; width: 100%; min-width: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; text-align: left; }
+  .event-card:hover { border-color: #A9BDEB; }
+  .event-card[aria-expanded="true"], .outcome[aria-expanded="true"] { border-color: var(--accent); color: var(--accent); }
+  .event-card[aria-expanded="true"] { background: var(--accent-soft); }
+  .event-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 5px; }
+  .event-date { font-size: 12px; font-variant-numeric: tabular-nums; color: var(--muted); }
+  .event-arrow { color: #87909D; font-size: 16px; }
+  .event-title { display: block; font-size: 17px; font-weight: 700; line-height: 1.4; }
+  .event-meta { display: flex; flex-wrap: wrap; gap: 4px 18px; margin-top: 8px; font-size: 12px; font-weight: 400; color: var(--muted); line-height: 1.5; }
+  .verification { display: inline-flex; align-items: baseline; gap: 5px; }
+  .more { display: block; margin: 16px auto 0; background: transparent; border: 0; padding: 8px 14px; color: var(--accent); font-size: 13px; font-weight: 600; }
+  #earlier-records { margin-top: 12px; }
+  .undated { margin-top: 28px; padding-top: 22px; border-top: 1px solid var(--border); }
+  .undated h3 { margin: 0 0 6px; font-size: 14px; }
+  .undated .event-list > li { padding-left: 0; }
+  .undated .event-list > li::before, .undated .event-list > li::after { display: none; }
+  .undated .event-card { background: transparent; }
+  .period { padding: 18px 0; border-top: 1px solid var(--border); }
+  .period:first-child { padding-top: 0; border-top: 0; }
+  .period-title { margin: 0 0 12px; font-size: 14px; font-variant-numeric: tabular-nums; }
+  .comparison-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .country { min-width: 0; }
+  .country h4 { margin: 0 0 8px; color: var(--muted); font-size: 11px; font-weight: 600; }
+  .country.kr h4 { color: var(--accent); }
+  .country .event-card + .event-card { margin-top: 10px; }
+  .country .event-card { padding: 12px 14px; }
+  .country .event-title { font-size: 15px; }
+  .country .event-meta { display: grid; gap: 5px; }
+  .empty-records { margin: 0; color: #7A828E; font-size: 12px; }
+  .load-message { padding: 20px; border: 1px solid var(--border); background: var(--surface); border-radius: 10px; font-size: 14px; }
+  .load-message p { margin: 0 0 12px; }
+  .load-message a { color: var(--accent); }
+  footer { padding: 24px 0 32px; border-top: 1px solid var(--border); }
+  .foot { display: flex; gap: 24px; font-size: 12px; color: var(--muted); }
+  footer a { text-decoration: none; }
+  body.panel-open { overflow: hidden; }
+  .drawer-back { position: fixed; inset: 0; background: rgba(17, 24, 39, .22); z-index: 40; }
+  .drawer { position: fixed; top: 0; right: 0; bottom: 0; width: min(520px, 100%); background: var(--surface); z-index: 41; box-shadow: -8px 0 32px rgba(0,0,0,.08); display: flex; flex-direction: column; }
+  .drawer-header { display: flex; gap: 16px; justify-content: space-between; align-items: flex-start; padding: 24px; border-bottom: 1px solid var(--border); }
+  .drawer-kicker { margin: 0 0 6px; font-size: 11px; letter-spacing: .1em; color: var(--muted); }
+  .drawer h2 { font-size: 22px; line-height: 1.4; }
+  .drawer-close { flex-shrink: 0; padding: 7px 10px; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); font-size: 12px; }
+  .drawer-content { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 24px 24px 40px; overflow-wrap: anywhere; }
+  .drawer-content p, .drawer-content li { font-size: 14px; }
+  .drawer-content p { margin: 0 0 14px; }
+  .drawer-content a { color: var(--accent); }
+  .drawer-content h3 { margin: 24px 0 10px; font-size: 16px; }
+  .drawer-content h4 { margin: 20px 0 8px; font-size: 14px; }
+  .drawer-content ul { padding-left: 20px; }
+  .drawer-content dl { margin: 20px 0; display: grid; grid-template-columns: 80px minmax(0, 1fr); gap: 10px 14px; font-size: 13px; }
+  .drawer-content dt { color: var(--muted); }
+  .drawer-content dd { margin: 0; }
+  .source-list { margin: 0; padding: 0 !important; list-style: none; }
+  .source-list li { padding: 8px 0; }
+  .source-list small { display: block; margin-top: 3px; font-size: 12px; color: var(--muted); }
+  .disclosure { border-top: 1px solid var(--border); margin-top: 20px; padding-top: 16px; }
+  .disclosure > summary { cursor: pointer; font-weight: 700; font-size: 14px; }
+  .disclosure > summary:focus-visible { outline-offset: 2px; }
+  .scope-note { margin: 14px 0 !important; padding: 12px; background: var(--accent-soft); color: #4E5C72; font-size: 12px !important; }
+  .register { padding: 14px 0; border-bottom: 1px solid var(--border); }
+  .register strong { font-size: 14px; }
+  .register p { margin: 6px 0 0; color: var(--muted); font-size: 12px; }
+  .field-label { font-weight: 600; }
+  .stats { display: grid; gap: 12px; margin-top: 14px; }
+  .stat { padding: 14px; border: 1px solid var(--border); border-radius: 8px; }
+  .stat strong { font-size: 22px; }
+  .stat span { display: block; margin-top: 5px; font-size: 12px; color: var(--muted); }
+  .action-list { list-style: none; padding: 0 !important; }
+  .action-list > li { display: flex; gap: 10px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .action-list small { display: block; margin-top: 6px; color: var(--muted); }
   @media (max-width: 680px) {
-    .hero { padding: 64px 0 48px; }
-    section.block { padding: 52px 0; }
-    .two-col { grid-template-columns: 1fr; }
-    .stats { grid-template-columns: 1fr; }
-    .compare { grid-template-columns: 1fr; }
-    .help-grid { grid-template-columns: 1fr 1fr; }
-    .card { padding: 24px; }
-    .next-item { flex-direction: column; align-items: flex-start; }
-  }
-  @media (max-width: 420px) {
-    .help-grid { grid-template-columns: 1fr; }
+    .wrap { padding-left: 20px; padding-right: 20px; }
+    .nav { min-height: 56px; }
+    .brand { font-size: 11px; }
+    .participate { font-size: 12px; }
+    .mission { padding-top: 28px; padding-bottom: 26px; }
+    .mission .eyebrow { margin-bottom: 9px; }
+    .mission p:last-child { font-size: 14px; margin-top: 14px; max-width: 36ch; }
+    .timeline { padding-top: 22px; }
+    .topic { gap: 10px; margin-bottom: 14px; }
+    h2 { font-size: 20px; }
+    .current-state { padding: 12px 14px; }
+    .current-heading { margin-bottom: 8px; font-size: 11px; }
+    .outcomes { grid-template-columns: 1fr; gap: 10px; }
+    .outcome { font-size: 13px; gap: 12px; }
+    .outcome .result { font-size: 11px; }
+    .toolbar { align-items: flex-start; flex-wrap: wrap; margin-top: 20px; gap: 10px; }
+    .view-title { flex: 1 0 100%; font-size: 14px; }
+    .control { padding: 7px 10px; font-size: 12px; }
+    .view-note { font-size: 11px; margin-bottom: 14px; }
+    .event-list > li { padding-left: 18px; }
+    .event-card { padding: 14px 15px; }
+    .event-title { font-size: 16px; }
+    .event-meta { display: grid; gap: 5px; font-size: 11px; }
+    .comparison-grid { grid-template-columns: 1fr; gap: 14px; }
+    .country.empty { display: none; }
+    .country h4 { font-size: 12px; }
+    .drawer { top: auto; left: 0; bottom: 0; width: 100%; max-height: 82vh; max-height: 82dvh; border-radius: 16px 16px 0 0; }
+    .drawer-header { padding: 18px 20px; }
+    .drawer h2 { font-size: 20px; }
+    .drawer-content { padding: 20px 20px max(28px, env(safe-area-inset-bottom)); }
   }
 </style>
 </head>
 <body>
-
-<header>
-  <nav class="nav" aria-label="상단 탐색">
-    <a class="brand" href="#top">OPENDRIVE KOREA</a>
-    <div class="nav-links">
-      <a href="https://github.com/drivekr/opendrive" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://x.com/OpenDriveKR" target="_blank" rel="noopener">X</a>
-    </div>
-  </nav>
-</header>
-
-<main id="top">
-  <!-- 1. Hero -->
-  <div class="wrap hero">
-    <h1>한국에서 합법적인 자율주행을<br />최대한 빠르게.</h1>
-    <p>해외에서 이미 상용화된 기술이</p>
-    <p><strong>한국에서는 왜 늦게 도입되는지 공개적으로 조사합니다.</strong></p>
-    <div class="cta-row">
-      <a class="btn primary" href="#investigation">현재 조사 보기</a>
-      <a class="btn" href="https://github.com/drivekr/opendrive/issues" target="_blank" rel="noopener">조사에 참여하기</a>
-    </div>
-    <div class="scroll-hint" aria-hidden="true">↓</div>
-  </div>
-
-  <!-- 2. Regulatory Lead Time -->
-  <section class="block" id="leadtime" aria-labelledby="leadtime-title">
-    <div class="wrap">
-      <div class="eyebrow">KOREA DCAS REGULATORY LEAD TIME</div>
-      <h2 id="leadtime-title">국제기준에서 한국 도로까지</h2>
-      <div id="measurement-view"><p class="lane-note">조사 기록을 읽는 중…</p></div>
-      <p class="lead">사건을 누르면 관련 주체, 확인 수준, 근거 수집기록과 원문 출처를 볼 수 있습니다.</p>
-      <div class="tabs" role="tablist" aria-label="Lead time views">
-        <button class="tab" role="tab" aria-selected="true" data-tab="timeline">Timeline</button>
-        <button class="tab" role="tab" aria-selected="false" data-tab="people">People</button>
-        <button class="tab" role="tab" aria-selected="false" data-tab="docs">Documents</button>
-        <button class="tab" role="tab" aria-selected="false" data-tab="actions">Actions</button>
-      </div>
-      <div id="panel-timeline" role="tabpanel">
-        <div class="tl-scroll"><div class="tl-inner" id="tl-inner"></div></div>
-        <p class="lane-note">● 사건 기록 확인 · ○ 점선은 연·월 단위 또는 결과 미확인 · 월·연 단위 위치는 배치용이며 정확한 소요 일수를 뜻하지 않습니다.</p>
-      </div>
-      <div id="panel-people" role="tabpanel" hidden></div>
-      <div id="panel-docs" role="tabpanel" hidden></div>
-      <div id="panel-actions" role="tabpanel" hidden></div>
-    </div>
-  </section>
-
-  <!-- 3. Investigation interpretation, rendered from the wiki -->
-  <section class="block" id="bottleneck" aria-labelledby="bottleneck-title">
-    <div class="wrap">
-      <div class="eyebrow">BOTTLENECK INVESTIGATION</div>
-      <h2 id="bottleneck-title">어떤 조건이 국내 제공을 늦추는가?</h2>
-      <div id="summary-view" class="wiki-content"></div>
-      <div id="statistics-view" class="stats"></div>
-      <div id="bottleneck-view" class="wiki-content"></div>
-      <details class="evidence-notes">
-        <summary>근거의 정정 내역과 해석 범위</summary>
-        <div id="evidence-notes-view" class="wiki-content"></div>
-      </details>
-      <div class="cta-row">
-        <a class="btn primary" href="#questions">미해결 질문 보기</a>
-        <a class="btn" href="#leadtime">사건별 근거 보기</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- 4. Why -->
-  <section class="block" aria-labelledby="why-title">
-    <div class="wrap">
-      <div class="eyebrow">WHY OPENDRIVE</div>
-      <h2 id="why-title">기술보다 정보가<br />더 느릴 때가 있습니다.</h2>
-      <p class="lead">
-        금융, 모빌리티, AI 등 여러 분야에서 해외에서는 이미 일상적으로 사용되는 기술이
-        한국에는 늦게 도입되는 경우가 있습니다.<br /><br />
-        문제는 단순히 늦다는 것이 아닙니다.<br />
-        <strong>왜 늦는지, 어디에서 멈춰 있는지, 누가 다음 행동을 해야 하는지</strong><br />
-        알기 어렵다는 것입니다.
-      </p>
-      <div class="quote">OpenDrive Korea는 그 과정 자체를 공개합니다.</div>
-    </div>
-  </section>
-
-  <!-- 5. Current investigation -->
-  <section class="block" id="investigation" aria-labelledby="inv-title">
-    <div class="wrap">
-      <div class="eyebrow">CURRENT INVESTIGATION</div>
-      <h2 id="inv-title">지금 조사 중인 것</h2>
-      <div id="investigation-view" class="wiki-content"></div>
-      <a class="card-link" href="https://github.com/drivekr/opendrive/issues" target="_blank" rel="noopener">조사에 참여하기 →</a>
-    </div>
-  </section>
-
-  <!-- 6. Open questions -->
-  <section class="block" id="questions" aria-labelledby="questions-title">
-    <div class="wrap">
-      <div class="eyebrow">OPEN QUESTIONS</div>
-      <h2 id="questions-title">아직 확인할 질문</h2>
-      <div id="questions-view" class="wiki-content"></div>
-      <p class="brand-line"><strong>Unknown stays unknown until we find evidence.</strong></p>
-    </div>
-  </section>
-
-  <!-- 7. Flow -->
-  <section class="block" aria-labelledby="flow-title">
-    <div class="wrap">
-      <div class="eyebrow">HOW WE WORK</div>
-      <h2 id="flow-title">글만 쓰지 않습니다. 해결될 때까지 추적합니다.</h2>
-      <div class="flow">
-        <ol>
-          <li><span class="step">1</span>OBSERVE — 현상을 확인한다</li>
-          <li><span class="step">2</span>COLLECT EVIDENCE — 근거를 모은다</li>
-          <li><span class="step">3</span>IDENTIFY BOTTLENECK — 병목을 특정한다</li>
-          <li><span class="step">4</span>FIND THE OWNER — 담당 주체를 찾는다</li>
-          <li><span class="step">5</span>ASK — 공식적으로 질의한다</li>
-          <li><span class="step">6</span>PROPOSE — 해결안을 제안한다</li>
-          <li><span class="step">7</span>AVAILABLE IN KOREA — 국내에서 쓸 수 있게 된다</li>
-        </ol>
-      </div>
-      <div class="closed">
-        <p>이슈가 해결되어 한국에서 실제 사용할 수 있게 되면 Investigation을 닫습니다.</p>
-        <strong>Issue closed = Available in Korea</strong>
-      </div>
-    </div>
-  </section>
-
-  <!-- 8. AI Agents -->
-  <section class="block" aria-labelledby="ai-title">
-    <div class="wrap">
-      <div class="eyebrow">AI AGENTS</div>
-      <h2 id="ai-title">정보도 기술만큼<br />빠르게 움직여야 합니다.</h2>
-      <p class="lead">
-        법령, 국제기준, 제조사 발표, 해외 사례, 정부 답변은 여러 곳에 흩어져 있습니다.
-        OpenDrive Korea는 AI agents를 활용해 조사 속도를 높입니다.
-      </p>
-      <div class="ai-box">
-        <strong>AI가 돕는 일</strong>
-        <ul>
-          <li>자료 검색</li>
-          <li>문서 비교</li>
-          <li>해외 사례 조사</li>
-          <li>질의 초안 작성</li>
-          <li>업데이트 추적</li>
-          <li>협업 정리</li>
-        </ul>
-        <p style="margin:18px 0 0;"><strong>AI의 답은 Evidence가 아닙니다. Evidence는 항상 원문으로 확인합니다.</strong></p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 9. Help Wanted -->
-  <section class="block" aria-labelledby="help-title">
-    <div class="wrap">
-      <div class="eyebrow">HELP WANTED</div>
-      <h2 id="help-title">혹시 이 분야를 아시나요?</h2>
-      <p class="lead">관련 원문과 경험을 공유하고 미해결 질문을 함께 확인해주세요.</p>
-      <div class="help-grid">
-        <div class="help-card"><strong>Automotive Certification</strong><span>국내 인증 / 형식승인 / homologation</span></div>
-        <div class="help-card"><strong>Regulation</strong><span>KMVSS / 자동차 관련 법규</span></div>
-        <div class="help-card"><strong>International Standards</strong><span>UN WP.29 / R171 / DCAS</span></div>
-        <div class="help-card"><strong>ADAS / Autonomous Driving</strong><span>perception / planning / validation</span></div>
-        <div class="help-card"><strong>Maps &amp; Geospatial</strong><span>HD Map / 공간정보</span></div>
-        <div class="help-card"><strong>Data &amp; Privacy</strong><span>차량 영상 / 개인정보 / 데이터 처리</span></div>
-      </div>
-      <div class="help-cta">
-        <p><strong>전문가일 필요는 없습니다.</strong><br />관련 법 조항 하나, 회사 문서 하나, 실제 경험 하나도 도움이 됩니다.</p>
-        <div class="cta-row" style="justify-content:center;">
-          <a class="btn primary" href="https://github.com/drivekr/opendrive/issues" target="_blank" rel="noopener">GitHub Investigation에 참여하기</a>
-          <a class="btn" href="#questions">미해결 질문 보기</a>
+<div id="page-content">
+  <header>
+    <nav class="wrap nav" aria-label="상단 탐색">
+      <a class="brand" href="#top">OPENDRIVE KOREA</a>
+      <a class="participate" href="https://github.com/drivekr/opendrive/issues">조사에 참여하기 ↗</a>
+    </nav>
+  </header>
+  <main id="top">
+    <section class="wrap mission" aria-labelledby="mission-title">
+      <p class="eyebrow">MISSION</p>
+      <h1 id="mission-title">한국에서 합법적인 자율주행을<br />최대한 빠르게.</h1>
+      <p>국제기준이 한국 도로에 닿기까지, 막힌 지점을 근거로 추적합니다.</p>
+    </section>
+    <section class="timeline" aria-labelledby="timeline-title">
+      <div class="wrap">
+        <div class="topic">
+          <p class="eyebrow">조사 타임라인</p>
+          <h2 id="timeline-title">DCAS / Tesla FSD</h2>
         </div>
+        <div id="current-state" aria-live="polite"><p class="view-note">조사 기록을 읽는 중…</p></div>
+        <div id="measurement-view" class="measurement"></div>
+        <div class="toolbar">
+          <h3 id="view-title" class="view-title">한국의 기록</h3>
+          <div class="controls">
+            <button id="compare-toggle" class="control" aria-pressed="false" aria-controls="tl-inner" disabled>국제·일본 비교</button>
+            <button id="study-open" class="control" aria-haspopup="dialog" aria-controls="drawer" aria-expanded="false" disabled>조사 정리 ↗</button>
+          </div>
+        </div>
+        <p id="view-note" class="view-note">최신순 · 사건을 선택하면 근거와 관련 주체를 볼 수 있습니다.</p>
+        <div id="tl-inner" aria-busy="true"></div>
+        <noscript><p class="load-message">타임라인을 보려면 JavaScript가 필요합니다. <a href="https://github.com/drivekr/opendrive/blob/main/wiki/dcas.md">위키 정리</a>에서 기록과 raw 근거를 읽을 수 있습니다.</p></noscript>
       </div>
+    </section>
+  </main>
+  <footer>
+    <div class="wrap foot">
+      <a href="https://github.com/drivekr/opendrive">GitHub</a>
+      <a href="https://github.com/drivekr/opendrive/blob/main/README.md">프로젝트 소개</a>
+      <a href="mailto:drivekr@proton.me">연락처</a>
     </div>
-  </section>
-</main>
-
-<footer>
-  <div class="wrap foot">
-    <div>
-      <strong style="color:var(--text);">OpenDrive Korea</strong><br />
-      Open research for faster autonomous driving adoption in Korea.
-    </div>
-    <div style="display:flex; gap:16px;">
-      <a href="https://github.com/drivekr/opendrive" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://x.com/OpenDriveKR" target="_blank" rel="noopener">X @OpenDriveKR</a>
-      <a href="mailto:drivekr@proton.me">drivekr@proton.me</a>
-    </div>
+  </footer>
+</div>
+<div id="drawer-back" class="drawer-back" hidden></div>
+<aside id="drawer" class="drawer" role="dialog" aria-modal="true" aria-labelledby="d-title" tabindex="-1" hidden>
+  <div class="drawer-header">
+    <div><p id="d-kicker" class="drawer-kicker">사건 상세</p><h2 id="d-title"></h2></div>
+    <button id="drawer-close" class="drawer-close" aria-label="패널 닫기">닫기 ✕</button>
   </div>
-</footer>
-
-<div class="drawer-back" id="drawer-back" hidden></div>
-<aside class="drawer" id="drawer" hidden aria-label="Timeline detail">
-  <button class="drawer-close" id="drawer-close">닫기</button>
-  <div class="eyebrow">TIMELINE DETAIL</div>
-  <h3 id="d-event"></h3>
-  <dl id="d-fields"></dl>
+  <div id="d-content" class="drawer-content"></div>
 </aside>
-
 <script src="assets/wiki-view.js"></script>
-
 </body>
 </html>

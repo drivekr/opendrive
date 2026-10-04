@@ -89,3 +89,128 @@ test('corrected pending results and attribution survive parsing', () => {
   const adoption = model.events.find(event => event.lane === 'un' && event.date === '2025-03');
   assert.doesNotMatch(adoption.evidence, /cn351/i);
 });
+
+test('Korea starts with the four newest dated events; unknown years and outcomes stay separate', () => {
+  const groups = view.timelineGroups(model.events);
+  assert.deepEqual(groups.korea.slice(0, 4).map(event => event.date), ['2026-09-15', '2026-08-31', '2026-07-29', '2026-07-28']);
+  assert.deepEqual(groups.korea.slice(4).map(event => event.date), ['2026-05-04']);
+  assert.deepEqual(groups.koreaYears.map(event => event.date), ['2025']);
+  assert.equal(groups.pending.length, 2);
+  assert.ok(groups.pending.every(event => event.date === 'Pending' && !event.range));
+  assert.equal(groups.months.flatMap(group => group.events).length, 13);
+  assert.deepEqual(groups.months.find(group => group.date === '2024-09').events.map(event => event.lane), ['un', 'jp']);
+  assert.ok(groups.months.every(group => group.events.every(event => event.date.slice(0, 7) === group.date)));
+  assert.equal(view.displayDate('2024-09'), '2024.09 · 일자 미확인');
+  assert.equal(view.displayDate('2025'), '2025년 · 월일 미확인');
+  assert.equal(view.displayDate('Pending'), '날짜 미확인');
+});
+
+// A small DOM boundary fixture exercises mounting and delegated controls without
+// adding a browser dependency to the static site's CI. Real layout/focus QA is
+// performed in the browser; this fixture deliberately has no layout engine.
+function fixture() {
+  const elements = new Map();
+  const handlers = {};
+  const document = {
+    location: { href: pageURL }, activeElement: null,
+    getElementById: id => elements.get(id) || null,
+    addEventListener: (type, fn) => { handlers[type] = fn; },
+    body: { classList: { add() {}, remove() {} } }
+  };
+  function element(id, attrs = {}) {
+    const callbacks = {};
+    let html = '';
+    const node = {
+      id, dataset: {}, hidden: 'hidden' in attrs, disabled: 'disabled' in attrs, textContent: '',
+      attrs, callbacks,
+      addEventListener: (type, fn) => { callbacks[type] = fn; },
+      setAttribute(key, value) { attrs[key] = value; },
+      hasAttribute: key => key in attrs,
+      closest: () => node,
+      focus() { document.activeElement = node; },
+      set innerHTML(value) {
+        html = value;
+        for (const match of value.matchAll(/<[^>]+\bid="([^"]+)"[^>]*>/g)) {
+          const attributes = Object.fromEntries([...match[0].matchAll(/([\w-]+)="([^"]*)"/g)].map(pair => [pair[1], pair[2]]));
+          if (/\bhidden(?:\s|>)/.test(match[0])) attributes.hidden = '';
+          const child = element(match[1], attributes);
+          if (attributes['data-i']) child.dataset.i = attributes['data-i'];
+          elements.set(child.id, child);
+        }
+      },
+      get innerHTML() { return html; }
+    };
+    return node;
+  }
+  const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+  for (const match of html.matchAll(/<[^>]+\bid="([^"]+)"[^>]*>/g)) {
+    const attrs = {};
+    if (/\bhidden(?:\s|>)/.test(match[0])) attrs.hidden = '';
+    if (/\bdisabled(?:\s|>)/.test(match[0])) attrs.disabled = '';
+    elements.set(match[1], element(match[1], attrs));
+  }
+  const click = id => elements.get('page-content').callbacks.click({ target: elements.get(id) });
+  return { document, elements, click, handlers };
+}
+
+test('the landing mounts without removed sections, preserves expanded history and restores panel focus', async () => {
+  const { document, elements, click, handlers } = fixture();
+  assert.equal(elements.has('panel-people'), false);
+  const result = await view.mount(document, async () => ({ ok: true, text: async () => md }));
+  assert.ok(result);
+  assert.equal(elements.get('compare-toggle').disabled, false);
+  assert.equal(elements.get('earlier-records').hidden, true);
+  const recentHTML = elements.get('tl-inner').innerHTML.match(/id="recent-records">([\s\S]*?)<\/div>/)[1];
+  assert.equal((recentHTML.match(/class="event-card"/g) || []).length, 4);
+  assert.match(elements.get('current-state').innerHTML, /DCAS 국내 반영일.*결과 미확인/s);
+  assert.doesNotMatch(elements.get('measurement-view').innerHTML, /목표/);
+  click('earlier-toggle');
+  assert.equal(elements.get('earlier-records').hidden, false);
+  assert.equal(elements.get('earlier-toggle').attrs['aria-expanded'], 'true');
+  click('compare-toggle');
+  assert.equal(elements.get('compare-toggle').attrs['aria-pressed'], 'true');
+  assert.match(elements.get('tl-inner').innerHTML, /comparison-grid/);
+  assert.match(elements.get('tl-inner').innerHTML, /국제 · UN \/ WP.29/);
+  assert.doesNotMatch(elements.get('tl-inner').innerHTML, /Pending/);
+  click('event-8-compare');
+  assert.equal(elements.get('drawer').hidden, false);
+  assert.equal(elements.get('page-content').inert, true);
+  assert.equal(document.activeElement.id, 'drawer-close');
+  assert.match(elements.get('d-content').innerHTML, /raw 수집기록.*원문 출처.*확인 수준/s);
+  assert.match(elements.get('d-content').innerHTML, /조사 주제 전체.*확정 원인/s);
+  assert.doesNotMatch(elements.get('d-content').innerHTML, /<details class="disclosure" open/);
+  handlers.keydown({ key: 'Escape', preventDefault() {} });
+  assert.equal(elements.get('drawer').hidden, true);
+  assert.equal(elements.get('page-content').inert, false);
+  assert.equal(document.activeElement.id, 'event-8-compare');
+  click('compare-toggle');
+  assert.equal(elements.get('earlier-records').hidden, false);
+  click('study-open');
+  const content = elements.get('d-content').innerHTML;
+  for (const label of ['통계와 확인 범위', '확인할 질문', '관련 사람·기관', '근거 문서', '한국·일본 비교의 범위', '국제·일본의 미확인 결과']) assert.ok(content.includes(label), label);
+  elements.get('drawer-close').callbacks.click();
+  assert.equal(document.activeElement.id, 'study-open');
+});
+
+test('failed or empty wiki loads preserve the landing and can recover through retry', async () => {
+  for (const failure of ['network', 'http', 'empty']) {
+    const { document, elements, click } = fixture();
+    let fail = true;
+    const result = await view.mount(document, async () => {
+      if (!fail) return { ok: true, text: async () => md };
+      if (failure === 'network') throw new Error('offline');
+      return { ok: failure !== 'http', text: async () => '# Empty' };
+    });
+    assert.equal(result, null);
+    assert.equal(elements.get('compare-toggle').disabled, true);
+    assert.equal(elements.get('study-open').disabled, true);
+    assert.equal(elements.get('tl-inner').attrs['aria-busy'], 'false');
+    assert.match(elements.get('tl-inner').innerHTML, /role="alert".*위키 정리 보기.*raw 근거 안내.*다시 불러오기/s);
+    assert.ok(elements.has('mission-title'));
+    fail = false;
+    assert.ok(await click('retry-load'));
+    assert.equal(elements.get('compare-toggle').disabled, false);
+    assert.equal(elements.get('earlier-records').hidden, true);
+    assert.equal(elements.get('tl-inner').attrs['aria-busy'], 'false');
+  }
+});
