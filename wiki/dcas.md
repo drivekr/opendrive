@@ -91,7 +91,7 @@ DCAS 제도 정비 문제로 지연되고 있다.
   - URL: https://unece.org/sites/default/files/2025-03/R171e.pdf
   - 핵심: system-initiated manoeuvre 요구사항 포함 ("Additional requirements for system-initiated lane changes")
 - EU 2025/1899 — R171.01 (EUR-Lex)
-  - URL: https://eur-lex.europa.eu/eli/reg/2025/1899/oj
+  - URL: https://eur-lex.europa.eu/eli/reg/2025/1899/oj/eng
   - 핵심: 01 series EU 법제화 문서
 - R171 02 series 제안·채택 기록 (GAR)
   - URL: https://globalautoregs.com/documents/42373
@@ -99,14 +99,17 @@ DCAS 제도 정비 문제로 지연되고 있다.
 - MLIT 차량안전대책검토회 회의자료 (PDF)
   - URL: https://www.mlit.go.jp/jidosha/content/001843891.pdf
   - 핵심: 2024-06-26 공개, 9월 중순 개정 예정, 추가 개정 대기분 임의적용 명시
+- MLIT 차량안전대책검토회 개최 목록 (HTML)
+  - URL: https://www.mlit.go.jp/jidosha/jidosha_tk7_000005.html
+  - 핵심: 각 회차 자료·개요 목록. 2024-06-26 (자료3-2) 확인. 2025-06-09, 2025-11-12, 2026-03-17, 2026-06-26 회차는 01 series 국내 반영 단서 후보 (미확인)
 - 자동차규칙 제89조 (국가법령정보센터)
   - URL: https://www.law.go.kr/LSW/lsLinkCommonInfo.do?lsJoLnkSeq=1031833383
-  - 핵심: 조향장치는 별표 6의2 기준 준수
+  - 핵심: 조향장치는 별표 6의2 기준 준수. 현행 [시행 2026-07-10, 국토교통부령 제1602호] (직접 확인)
 - 자동차관리법 개정안 의안 2220196 (국민참여입법센터)
   - URL: https://community.lawmaking.go.kr/gcom/nsmLmSts/out/2220196/detailRP
   - 핵심: DCAS 정의·안전관리체계·조사·시정·벌칙 신설, 2026-07-28 발의·07-29 회부
 - 국토교통부 자율주행정책과 업무
-  - URL: https://www.molit.go.kr/USR/deptInfo/m_94/lst.jsp?DEPT_ID=1613787
+  - URL: https://www.molit.go.kr/USR/deptInfo/m_94/lst.jsp?DEPT_ID=1613787&DEPT_NM=%EC%9E%90%EC%9C%A8%EC%A3%BC%ED%96%89%EC%A0%95%EC%B1%85%EA%B3%BC
   - 핵심: 안전기준·성능인증제·상용화 정책 총괄
 - 자동차 안전기준 종합정보시스템 (KICAS)
   - URL: https://kicas.katri.or.kr/info/life/citationSystem

@@ -10,3 +10,4 @@ Append-only. ingest·수정·판단 변경이 있을 때마다 날짜와 함께 
 - 2026-10-04 — `wiki/dcas.md`를 single source of truth로. 페이지 4개 뷰(Timeline/People/Documents/Actions)가 md 파싱 렌더로 전환.
 - 2026-10-04 — `AGENTS.md` 작성. llmwiki 패턴 채택: `raw/`(사람·불변) → `wiki/`(LLM 소유) → landing.
 - 2026-10-04 — 모순 수정: 어림 날짜 기반 Elapsed에 `~` 표기, Pending 측정 기준일을 R171.01로 통일 (`since:` 규칙 신설), 5월/9월 두 통계의 분모 관계 명시.
+- 2026-10-04 — `raw/sources/` backfill 15건 (UN/EU/JP/법령/의안/기관/언론). EUR-Lex `/oj/eng`·MOLIT full URL로 교체, MLIT 회의 목록 URL 추가, 제89조 현행 시행일(2026-07-10) 기록.
