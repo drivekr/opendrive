@@ -92,17 +92,36 @@ test('corrected pending results and attribution survive parsing', () => {
 
 test('Korea starts with the four newest dated events; unknown years and outcomes stay separate', () => {
   const groups = view.timelineGroups(model.events);
-  assert.deepEqual(groups.korea.slice(0, 4).map(event => event.date), ['2026-09-15', '2026-08-31', '2026-07-29', '2026-07-28']);
-  assert.deepEqual(groups.korea.slice(4).map(event => event.date), ['2026-05-04']);
+  assert.deepEqual(groups.korea.slice(0, 4).map(event => event.date), ['2026-10-04', '2026-10-01', '2026-09-15', '2026-08-31']);
+  assert.deepEqual(groups.korea.slice(4).map(event => event.date), ['2026-07-29', '2026-07-28', '2026-07', '2026-05-04', '2025-11']);
   assert.deepEqual(groups.koreaYears.map(event => event.date), ['2025']);
   assert.equal(groups.pending.length, 2);
   assert.ok(groups.pending.every(event => event.date === 'Pending' && !event.range));
-  assert.equal(groups.months.flatMap(group => group.events).length, 13);
+  assert.equal(groups.months.flatMap(group => group.events).length, 17);
   assert.deepEqual(groups.months.find(group => group.date === '2024-09').events.map(event => event.lane), ['un', 'jp']);
   assert.ok(groups.months.every(group => group.events.every(event => event.date.slice(0, 7) === group.date)));
   assert.equal(view.displayDate('2024-09'), '2024.09 · 일자 미확인');
   assert.equal(view.displayDate('2025'), '2025년 · 월일 미확인');
   assert.equal(view.displayDate('Pending'), '날짜 미확인');
+});
+
+test('review offers retain company attribution and month precision; absent tests are dated as reports', () => {
+  for (const date of ['2025-11', '2026-07']) {
+    const offer = model.events.find(event => event.lane === 'kr' && event.date === date);
+    assert.match(offer.label, /테슬라 설명/);
+    assert.match(offer.verification, /회사 설명/);
+    assert.match(offer.detail, /2026-10-04 보도/);
+    assert.equal(offer.range.exact, false);
+    assert.equal(view.originalSources(offer.evidence, model.docs)[0].attrs.URL, 'https://v.daum.net/v/20261004145706476');
+  }
+  for (const date of ['2026-10-01', '2026-10-04']) {
+    const report = model.events.find(event => event.lane === 'kr' && event.date === date);
+    assert.match(report.label, /보도$/);
+    assert.match(report.verification, /날짜는 보도일/);
+  }
+  assert.match(model.sections.Bottleneck, /제안 설명 → FSD 시험·평가 실적 없음 → 후속 행정처리 미확인/);
+  assert.match(model.sections.Bottleneck, /공단의 검사기술·제도 연구와 FSD 자체 시험은 구분/);
+  assert.match(model.sections.Summary, /정식 접수·처리와 공식 거절 여부는 Unknown/);
 });
 
 // A small DOM boundary fixture exercises mounting and delegated controls without
@@ -172,7 +191,8 @@ test('the landing mounts without removed sections, preserves expanded history an
   assert.match(elements.get('tl-inner').innerHTML, /comparison-grid/);
   assert.match(elements.get('tl-inner').innerHTML, /국제 · UN \/ WP.29/);
   assert.doesNotMatch(elements.get('tl-inner').innerHTML, /Pending/);
-  click('event-8-compare');
+  const referralButton = 'event-' + model.events.findIndex(event => event.date === '2026-07-29') + '-compare';
+  click(referralButton);
   assert.equal(elements.get('drawer').hidden, false);
   assert.equal(elements.get('page-content').inert, true);
   assert.equal(document.activeElement.id, 'drawer-close');
@@ -182,7 +202,7 @@ test('the landing mounts without removed sections, preserves expanded history an
   handlers.keydown({ key: 'Escape', preventDefault() {} });
   assert.equal(elements.get('drawer').hidden, true);
   assert.equal(elements.get('page-content').inert, false);
-  assert.equal(document.activeElement.id, 'event-8-compare');
+  assert.equal(document.activeElement.id, referralButton);
   click('compare-toggle');
   assert.equal(elements.get('earlier-records').hidden, false);
   click('study-open');

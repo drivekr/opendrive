@@ -9,6 +9,8 @@
 
 DCAS 국내 반영과 제작사의 공식 배포는 구분해서 확인해야 한다. 의안 공개 정보에는 법안 발의·위원회 회부가 기록되어 있지만, 최종 법령 반영일과 중국산 Model 3/Y의 공식 FSD 제공 시점은 현재 수집한 근거로 확정할 수 없다. [의안 수집기록](../raw/sources/2026-07-28-dcas-bill-2220196.md), [진행정보 확인](../raw/sources/2026-10-04-dcas-bill-status.md), [제작사 배포 관련 보도](../raw/sources/2026-08-31-molit-fsd-ruling.md)
 
+2026년 10월 보도에는 테슬라코리아의 두 차례 검증 협력·시험차량 제공 제안 설명과 국토부·한국교통안전공단의 FSD 시험 실적 없음 답변이 함께 나타난다. 제안의 정식 접수·처리와 공식 거절 여부는 Unknown이다. 중국산 허용에 대한 현재 협의 없음도 보도됐으나 과거의 일반 FSD 출시 사전 협의와는 범위를 구분한다. [제안·기관 답변 보도](../raw/sources/2026-10-05-tesla-fsd-review-offers-jnilbo.md), [검증·협의 관련 방송 보도](../raw/sources/2026-10-05-fsd-public-testing-yonhapnewstv.md)
+
 ## Measurement
 
 - 시작: 2025-09-26
@@ -64,10 +66,18 @@ DCAS 국내 반영과 제작사의 공식 배포는 구분해서 확인해야 �
   - Evidence: [절차 보도](../raw/sources/2025-molit-15mo-procedure.md)
   - Actors: 국토교통부 / 박상혁 의원실 / 블로터
   - Verification: 2차 보도. 예상 절차이며 실제 착수·종료일 기록은 아님
+- [x] 2025-11 — 테슬라 설명: FSD 검증 협력 제안 — 국내 출시 전 국토부와 사전 협의하며 안전성 검증 협력·시험차량 제공을 제안했다는 회사 설명이 2026-10-04 보도됨. 정확한 제안 일자와 정식 접수 여부는 미확인
+  - Evidence: [테슬라 제안 설명 보도](../raw/sources/2026-10-05-tesla-fsd-review-offers-jnilbo.md)
+  - Actors: 테슬라코리아 / 국토교통부
+  - Verification: 2차 보도 · 회사 설명. 제안 공문·접수 기록 미확보
 - [x] 2026-05-04 — FSD 무단 활성화 85건 보도 — 박용갑 의원실 자료를 연합뉴스가 보도. 집계 기준일은 4월 28일
   - Evidence: [85건 수집기록](../raw/sources/2026-05-04-fsd-85-cases.md)
   - Actors: 박용갑 의원실 / 국토교통부 / 테슬라코리아
   - Verification: 2차 보도. 의원실 제출자료 원문 미확보
+- [x] 2026-07 — 테슬라 설명: 검증·시험차량 제공 재제안 — FSD V14 라이트 출시 전 자료와 시험차량 제공을 다시 제안했다는 회사 설명이 2026-10-04 보도됨. 중국산 Model 3/Y의 제한적 시험·임시운행허가 활용 방안도 설명. 신청 접수·허가 여부는 미확인
+  - Evidence: [재제안 설명 보도](../raw/sources/2026-10-05-tesla-fsd-review-offers-jnilbo.md)
+  - Actors: 테슬라코리아 / 국토교통부
+  - Verification: 2차 보도 · 회사 설명. 제안 일자는 월 단위, 신청·처리 기록 미확보
 - [x] 2026-07-28 — DCAS 법안 발의 — 송기헌 의원 등 11인, 의안 2220196
   - Evidence: [법안 수집기록](../raw/sources/2026-07-28-dcas-bill-2220196.md)
   - Actors: 송기헌 의원 등 11인
@@ -84,6 +94,14 @@ DCAS 국내 반영과 제작사의 공식 배포는 구분해서 확인해야 �
   - Evidence: [통계 수집기록](../raw/sources/2026-09-15-tesla-fsd-korea-stats.md)
   - Actors: 카이즈유데이터연구소 / 한국경제 / 테슬라 차량 소유자
   - Verification: 2차 보도. 원데이터와 사용 가능 분류 기준 미확보
+- [x] 2026-10-01 — 정부 FSD 시험·검증 없음 보도 — 연합뉴스TV가 공공 검증·시험과 중국산 허용 협의가 없다고 보도. 정책적 모순 인정은 방송의 서술이며 기관 답변 원문은 미확보
+  - Evidence: [연합뉴스TV 보도](../raw/sources/2026-10-05-fsd-public-testing-yonhapnewstv.md)
+  - Actors: 국토교통부 / 장종태 의원실 / 연합뉴스TV
+  - Verification: 2차 보도 · 기관 설명 인용. 날짜는 보도일, 공식 거절 기록은 아님
+- [x] 2026-10-04 — FSD 검증 제안·시험 실적 없음 보도 — 전남일보가 두 차례 제안에 대한 테슬라 설명과 국토부·공단의 시험 실적 없음 답변을 보도. 중국산 허용 별도 협의도 없다고 설명. 정식 접수·거절은 미확인이고 공단은 관련 검사기술·제도 연구 중이라고 답변
+  - Evidence: [전남일보 보도](../raw/sources/2026-10-05-tesla-fsd-review-offers-jnilbo.md)
+  - Actors: 테슬라코리아 / 국토교통부 / 한국교통안전공단
+  - Verification: 2차 보도 · 회사·기관 설명 인용. 날짜는 보도일, 기관 답변일은 Unknown
 - [ ] Pending — DCAS 국내 반영일 확인 — 최종 법령·안전기준 반영일 및 적용 범위 미확인
   - Evidence: [공개 진행정보](../raw/sources/2026-10-04-dcas-bill-status.md), [절차 보도](../raw/sources/2025-molit-15mo-procedure.md)
   - Actors: 국토교통부 / 국회 / 제작사·수입사
@@ -114,6 +132,12 @@ DCAS 국내 반영과 제작사의 공식 배포는 구분해서 확인해야 �
 
 ## Bottleneck
 
+### 검증 제안과 공공 시험의 연결
+
+관찰 상태는 **제안 설명 → FSD 시험·평가 실적 없음 → 후속 행정처리 미확인**이다. 2025년 11월·2026년 7월 제안은 회사 설명으로, 시험 실적 없음은 2026년 10월 보도에 인용된 기관 답변으로 기록한다. 현재 공개 근거만으로 정식 접수, 제안 수용·거절 또는 모든 후속 조치의 부재를 확정할 수 없다. 공단의 검사기술·제도 연구와 FSD 자체 시험은 구분한다. [제안·기관 답변 보도](../raw/sources/2026-10-05-tesla-fsd-review-offers-jnilbo.md), [방송 보도](../raw/sources/2026-10-05-fsd-public-testing-yonhapnewstv.md)
+
+조사할 병목은 제안이 접수·시험계획·실행으로 연결되는 과정의 공백이다. 이는 현재 위키의 조사 가설이며 국내 미제공의 유일한 원인이나 정부의 거절 의도로 단정하지 않는다. 회사의 누적 주행 자료도 공공 검증 완료나 안전성 입증과 같지 않다. 접수·처리 기록과 시험 담당·일정을 확보해 연결 여부를 확인한다. [제안과 공개 확인의 한계](../raw/sources/2026-10-05-tesla-fsd-review-offers-jnilbo.md)
+
 ### 안전기준과 작동 방식
 
 블로터가 인용한 국토부 설명은 운전자의 방향지시등 조작을 전제로 한 국내 기준과 시스템 주도 차로변경 사이의 충돌을 지목한다. 이는 현재 근거로 추적할 수 있는 규정상 쟁점이다. 별표6의2 제10호 전체 원문과 적용 대상 기능은 별도로 확인해야 한다. [민원 답변 보도](../raw/sources/2026-08-31-molit-fsd-ruling.md), [제89조 수집기록](../raw/sources/2026-07-10-auto-rule-art89.md)
@@ -132,17 +156,20 @@ DCAS 법안의 제안이유는 정의·제작·운행 관련 제도의 부재를
   - 역할: DCAS 국제기준 논의·채택
   - Evidence: [국제 채택에 대한 MLIT 기록](../raw/sources/2026-10-04-mlit-dcas-review-records.md)
 - 국토교통부
-  - 역할: 국내 기준 관련 질의·민원 답변의 주체로 보도됨. DCAS L2 조향 안전기준의 실무 담당 부서·책임자는 Unknown
-  - Evidence: [국토부 답변 보도](../raw/sources/2026-08-31-molit-fsd-ruling.md), [부서 업무 수집기록](../raw/sources/2026-10-04-molit-ts-roles.md)
-- TS 자동차안전연구원 / KICAS
-  - 역할: 안전기준 연구·시험·국제조화. 이번 DCAS 반영 업무의 구체적 분담은 Unknown
-  - Evidence: [기관 업무 수집기록](../raw/sources/2026-10-04-molit-ts-roles.md)
+  - 역할: 국내 기준 관련 질의·민원 답변 주체. 자동차정책과의 중국산 FSD 허용 별도 협의 없음과 자체 시험 실적 없음이 보도됨. DCAS L2 기준의 구체적 실무 분담은 Unknown
+  - Evidence: [국토부 답변 보도](../raw/sources/2026-08-31-molit-fsd-ruling.md), [부서 업무 수집기록](../raw/sources/2026-10-04-molit-ts-roles.md), [시험·협의 답변 보도](../raw/sources/2026-10-05-tesla-fsd-review-offers-jnilbo.md)
+- 한국교통안전공단 / 자동차안전연구원(KICAS)
+  - 역할: 안전기준 연구·시험·국제조화. 공단의 FSD 시험·평가·분석 실적 없음 및 검사기술·제도 연구 답변이 보도됨. 해당 답변의 세부 수행 부서와 DCAS 반영 업무 분담은 Unknown
+  - Evidence: [기관 업무 수집기록](../raw/sources/2026-10-04-molit-ts-roles.md), [공단 답변 보도](../raw/sources/2026-10-05-tesla-fsd-review-offers-jnilbo.md)
 - 박상혁 의원실
   - 역할: 국토부에 제약 완화·도입 시기·절차를 질의한 주체로 보도됨
   - Evidence: [질의 보도](../raw/sources/2025-molit-15mo-procedure.md)
 - 박용갑 의원실
   - 역할: FSD 무단 활성화 자료를 공개한 주체로 보도됨
   - Evidence: [85건 보도](../raw/sources/2026-05-04-fsd-85-cases.md)
+- 장종태 의원실
+  - 역할: 테슬라코리아의 주행 자료 공개 및 FSD 기준·검증 관련 문제 제기 주체로 보도됨. 의원실 제출자료 원문은 미확보
+  - Evidence: [의원실 자료 인용 보도](../raw/sources/2026-10-05-tesla-fsd-review-offers-jnilbo.md), [검증 관련 발언 보도](../raw/sources/2026-10-05-fsd-public-testing-yonhapnewstv.md)
 - 송기헌 의원 등 11인 / 국회 국토교통위원회
   - 역할: 의안 2220196 발의 / 회부 대상 위원회. 실제 심사 활동은 추가 확인 필요
   - Evidence: [법안 기록](../raw/sources/2026-07-28-dcas-bill-2220196.md), [회부 정보](../raw/sources/2026-10-04-dcas-bill-status.md)
@@ -150,11 +177,21 @@ DCAS 법안의 제안이유는 정의·제작·운행 관련 제도의 부재를
   - 역할: R171 국내 기준 개정과 후속 개정 계획 공개
   - Evidence: [MLIT 공식 자료](../raw/sources/2026-10-04-mlit-dcas-review-records.md)
 - 테슬라코리아 / 국내 차량 소유자
-  - 역할: 공식 소프트웨어 배포 주체 / 제공 범위에 영향을 받는 이해관계자
-  - Evidence: [배포 조건 보도](../raw/sources/2026-08-31-molit-fsd-ruling.md), [제공 범위 통계](../raw/sources/2026-09-15-tesla-fsd-korea-stats.md)
+  - 역할: 공식 소프트웨어 배포 주체이자 검증 협력·시험차량 제공 제안을 설명한 회사 / 제공 범위에 영향을 받는 차량 소유자. 제안 원문과 정식 접수는 미확인
+  - Evidence: [배포 조건 보도](../raw/sources/2026-08-31-molit-fsd-ruling.md), [제공 범위 통계](../raw/sources/2026-09-15-tesla-fsd-korea-stats.md), [검증 제안 설명](../raw/sources/2026-10-05-tesla-fsd-review-offers-jnilbo.md)
 
 ## Documents
 
+- Tesla FSD 검증 협력 제안과 기관 답변 보도 (전남일보)
+  - Raw: [수집기록](../raw/sources/2026-10-05-tesla-fsd-review-offers-jnilbo.md)
+  - URL: https://v.daum.net/v/20261004145706476
+  - 핵심: 회사가 설명한 두 차례 제안, 기관의 시험 실적 없음·중국산 허용 별도 협의 없음 답변, 정식 접수 확인의 한계
+  - 확인: 기사 본문 직접 확인한 2차 근거. 제안·접수·처리·기관 답변 원문은 미확보. 공식 거절은 확인되지 않음
+- 정부 FSD 검증·시험 관련 보도 (연합뉴스TV)
+  - Raw: [수집기록](../raw/sources/2026-10-05-fsd-public-testing-yonhapnewstv.md)
+  - URL: https://v.daum.net/v/20261001231718258
+  - 핵심: 정부 시험·검증 및 중국산 허용 협의 없음에 대한 2026-10-01 보도
+  - 확인: 방송 기사 본문 직접 확인한 2차 근거. 정책적 모순 인정은 보도의 서술이며 기관 답변 원문은 미확보
 - UN R171 초기 채택에 대한 해설
   - Raw: [수집기록](../raw/sources/2024-03-un-r171-adopted.md)
   - URL: https://www.pwc.com/jp/ja/knowledge/column/automotive-research-and-development/unece-wp29-grva-un-r171.html
@@ -265,6 +302,10 @@ DCAS 법안의 제안이유는 정의·제작·운행 관련 제도의 부재를
 
 ## Questions
 
+- 2025년 11월·2026년 7월 검증·시험차량 제공 제안은 어떤 경로로 전달됐으며 정식 공문·임시운행허가 신청이 접수됐는가?
+- 제안에 대한 접수번호·검토·회신·시험계획 기록이 있는가? 수용·거절·미처리 여부와 담당 기관·부서는 무엇인가?
+- 기관의 FSD 시험 실적 없음 답변은 어느 날짜·기능·생산지·하드웨어를 대상으로 하며 현재도 같은가?
+- 중국산 허용 관련 협의 범위와 향후 시험 가능 조건은 무엇인가? 일반 FSD 출시 사전 협의와 어떻게 구분되는가?
 - 국토부의 DCAS 검토 착수일과 단계별 착수·종료일은 언제인가?
 - 국내 법률·안전기준·안전관리 절차의 최신 반영 상태와 적용 범위는 무엇인가?
 - 별표6의2 제10호 원문과 국민신문고 답변 원문을 확보할 수 있는가?
@@ -277,6 +318,12 @@ DCAS 법안의 제안이유는 정의·제작·운행 관련 제도의 부재를
 
 - [x] raw·wiki 역할 정정 및 사건별 근거 연결 (2026-10-04)
 - [x] 일본 2024년 개정 기록과 01 series 계획을 MLIT 원문으로 보완 (2026-10-04)
+- [ ] 테슬라 검증 제안·기관 답변·접수 및 처리 기록의 원문 확보
+  - 담당: OpenDrive. 테슬라·국토부·공단에 확인할 질의 초안을 작성하고 2025년 11월·2026년 7월 제안의 경로·접수번호·회신 및 임시운행허가 신청 여부를 구분
+  - Evidence: [보도와 정식 접수 확인의 한계](../raw/sources/2026-10-05-tesla-fsd-review-offers-jnilbo.md)
+- [ ] FSD 공공 시험 실적·담당·계획과 중국산 허용 협의의 최신 상태 확인
+  - 담당: OpenDrive. 시험 대상·하드웨어·기능·답변 기준일과 검사기술 연구를 구분하고, 회신은 새 raw로 보존
+  - Evidence: [기관 답변 보도](../raw/sources/2026-10-05-tesla-fsd-review-offers-jnilbo.md), [검증·협의 보도](../raw/sources/2026-10-05-fsd-public-testing-yonhapnewstv.md)
 - [ ] 국토부 질의 초안 작성: DCAS 검토 착수일, 단계별 일정, 현 담당 부서, 적용 대상
   - 담당: OpenDrive. 원문 답변을 받으면 새 raw로 보존
 - [ ] 국내 최신 법령·별표6의2 제10호 및 의안 심사 자료 확보
@@ -305,3 +352,5 @@ DCAS 법안의 제안이유는 정의·제작·운행 관련 제도의 부재를
 - [MLIT 조사 메모](../raw/sources/2026-10-04-mlit-sessions-lead.md)의 가능성·다음 행동은 외부 사실이 아니다. 미해결 과제는 Questions·Actions에서 관리한다.
 - [5월 자료](../raw/sources/2026-05-04-fsd-85-cases.md)는 등록 180,684대 중 합법 FSD 2.4%, [9월 자료](../raw/sources/2026-09-15-tesla-fsd-korea-stats.md)는 운행 229,311대 중 사용 불가 79.3%를 보도한다. 시점·대상 차종·분류가 다르므로 같은 추세나 변화폭으로 묶지 않는다. 통계 원데이터와 제공 범위 변화는 추가 확인한다.
 - 과거 로그의 single source of truth·일본 검증 완료 표현은 당시의 판단 이력이다. 현재 원칙과 판단은 이 문서 및 로그의 새 정정 항목을 따른다.
+- 새 [제안 보도](../raw/sources/2026-10-05-tesla-fsd-review-offers-jnilbo.md)의 2025년 11월·2026년 7월은 회사가 설명한 제안 시점이다. 10월 1일·4일 사건은 시험 부재를 보도한 날짜이며 기관 답변일이나 거절일로 사용하지 않는다. 일반 출시 사전 협의와 중국산 허용 별도 협의의 범위를 구분하고, 공식 거절·정식 접수·후속 처리 미확인을 유지한다.
+- [연합뉴스TV](../raw/sources/2026-10-05-fsd-public-testing-yonhapnewstv.md)의 정책적 모순 표현은 보도의 서술로 인용한다. 기사 속 관계자 발언이나 국제기준 부재 설명을 위키의 독립적인 확정 판단으로 채택하지 않는다. [전남일보](../raw/sources/2026-10-05-tesla-fsd-review-offers-jnilbo.md)의 주행 자료는 국내·해외 포함 범위가 다르므로 방송의 약 9,200만㎞와 같은 국내 누적값으로 합치거나 안전성 입증으로 해석하지 않는다.
