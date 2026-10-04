@@ -210,18 +210,16 @@
   .tab { padding: 9px 16px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); font-weight: 700; font-size: 14px; cursor: pointer; color: var(--muted); }
   .tab[aria-selected="true"] { background: var(--text); color: #fff; border-color: var(--text); }
   .tl-scroll { overflow-x: auto; margin-top: 16px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
-  .tl-inner { position: relative; min-width: 780px; padding: 34px 28px 20px; }
-  .tl-years { position: relative; height: 18px; }
+  .tl-inner { position: relative; min-width: 1100px; padding: 34px 28px 20px; }
+  .tl-years { position: relative; height: 18px; margin-left: 92px; }
   .tl-year { position: absolute; transform: translateX(-50%); font-size: 11px; font-weight: 800; color: var(--muted); letter-spacing: .08em; }
   .lane { display: flex; padding: 12px 0 4px; border-top: 1px dashed var(--border); }
   .lane-name { width: 92px; flex-shrink: 0; font-size: 11px; font-weight: 800; letter-spacing: .08em; color: var(--muted); padding-top: 4px; }
   .track { position: relative; flex: 1; height: 150px; }
   .track::before { content: ""; position: absolute; left: 0; right: 0; top: 7px; height: 2px; background: var(--border); }
-  .track::after { content: ""; position: absolute; left: 0; right: 0; top: 73px; height: 2px; background: var(--border); }
-  .lane.jp .track::after { height: 1px; }
-  .node.up { top: 66px; }
+  .node .stem { position: absolute; left: 50%; width: 1px; background: var(--border); z-index: -1; pointer-events: none; }
   .lane.jp .track::before { height: 1px; }
-  .node { position: absolute; top: 0; transform: translateX(-50%); background: none; border: 0; cursor: pointer; padding: 0; width: 110px; text-align: center; font-family: inherit; }
+  .node { position: absolute; top: 0; transform: translateX(-50%); background: none; border: 0; cursor: pointer; padding: 0; width: 132px; text-align: center; font-family: inherit; z-index: 1; }
   .node .d { width: 14px; height: 14px; border-radius: 50%; margin: 1px auto 5px; background: #fff; border: 3px solid var(--text); }
   .node.done .d { background: #16A34A; border-color: #16A34A; }
   .node.progress .d { background: var(--accent); border-color: var(--accent); }
@@ -233,7 +231,7 @@
   .node .tip { display: none; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); margin-bottom: 8px; background: var(--text); color: #fff; font-size: 12px; font-weight: 600; padding: 6px 10px; border-radius: 6px; white-space: nowrap; z-index: 5; }
   .node:hover .tip, .node:focus-visible .tip { display: block; }
   .lane-note { font-size: 12px; color: var(--muted); margin: 6px 0 0; }
-  .org { margin-top: 20px; display: grid; }
+  .org { margin-top: 20px; display: grid; gap: 12px; }
   .org-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 20px; }
   .org-item strong { display: block; font-size: 15px; }
   .org-item span { font-size: 13px; color: var(--muted); }
@@ -256,6 +254,19 @@
     .drawer { top: auto; left: 0; right: 0; bottom: 0; width: 100%; max-height: 80vh; border-left: 0; border-top: 1px solid var(--border); border-radius: 16px 16px 0 0; }
     .metric-item { min-width: 0; flex: 1 1 100%; }
   }
+
+  .wiki-content p, .wiki-content li { font-size: 16px; color: var(--muted); }
+  .wiki-content a, .stat a, .lane-note a, .doc-list a, .org-item a, .action-list a { color: var(--accent); }
+  .org-item p, .doc-list p { margin: 6px 0 0; font-size: 13px; color: var(--muted); }
+  .doc-list li { padding: 16px 0; border-bottom: 1px solid var(--border); }
+  .field-label { font-weight: 700; }
+  .action-list { list-style: none; padding: 0; }
+  .action-list > li { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .action-list p { margin: 6px 0 0; font-size: 13px; color: var(--muted); }
+  .evidence-notes { margin-top: 28px; border-top: 1px solid var(--border); padding-top: 20px; }
+  .evidence-notes summary { cursor: pointer; font-weight: 700; }
+  .stat span { display: block; margin-top: 5px; }
+  [hidden] { display: none !important; }
 
   footer { border-top: 1px solid var(--border); padding: 40px 0 64px; color: var(--muted); font-size: 14px; }
   footer .foot { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; align-items: center; }
@@ -306,12 +317,9 @@
   <section class="block" id="leadtime" aria-labelledby="leadtime-title">
     <div class="wrap">
       <div class="eyebrow">KOREA DCAS REGULATORY LEAD TIME</div>
-      <h2 id="leadtime-title">UN standard ready → Korean roads</h2>
-      <div class="metric">
-        <div class="metric-item"><span class="metric-label">현재</span><strong>측정 중 · <span data-count-from="2025-09-26">–</span>일째</strong><span class="metric-note">R171.01 발효일 기준</span></div>
-        <div class="metric-item"><span class="metric-label">Target</span><strong>↓</strong><span class="metric-note">가설 검증 후 수치 확정</span></div>
-      </div>
-      <p class="lead">각 선의 길이가 곧 소요 시간이다. 노드를 누르면 문서와 담당기관까지 파고들 수 있다.</p>
+      <h2 id="leadtime-title">국제기준에서 한국 도로까지</h2>
+      <div id="measurement-view"><p class="lane-note">조사 기록을 읽는 중…</p></div>
+      <p class="lead">사건을 누르면 관련 주체, 확인 수준, 근거 수집기록과 원문 출처를 볼 수 있습니다.</p>
       <div class="tabs" role="tablist" aria-label="Lead time views">
         <button class="tab" role="tab" aria-selected="true" data-tab="timeline">Timeline</button>
         <button class="tab" role="tab" aria-selected="false" data-tab="people">People</button>
@@ -320,175 +328,29 @@
       </div>
       <div id="panel-timeline" role="tabpanel">
         <div class="tl-scroll"><div class="tl-inner" id="tl-inner"></div></div>
-        <p class="lane-note">● 확인된 날짜 · ○ 점선은 연·월 단위 또는 측정 중 · 일본 비교선은 검증된 2024년 체인만 표시</p>
+        <p class="lane-note">● 사건 기록 확인 · ○ 점선은 연·월 단위 또는 결과 미확인 · 월·연 단위 위치는 배치용이며 정확한 소요 일수를 뜻하지 않습니다.</p>
       </div>
-      <div id="panel-people" role="tabpanel" hidden>
-        <div class="org">
-          <div class="org-item"><strong>UNECE WP.29 / GRVA</strong><span>국제 자동차 안전기준 제·개정</span></div>
-          <div class="org-sep">↓</div>
-          <div class="org-item"><strong>국토교통부 자율주행정책과</strong><span>자율차 안전기준·성능인증제·상용화 정책 총괄 — <a href="https://www.molit.go.kr/USR/deptInfo/m_94/lst.jsp?DEPT_ID=1613787&DEPT_NM=%EC%9E%90%EC%9C%A8%EC%A3%BC%ED%96%89%EC%A0%95%EC%B1%85%EA%B3%BC" target="_blank" rel="noopener">업무 보기</a></span></div>
-          <div class="org-sep">↓</div>
-          <div class="org-item"><strong>TS 자동차안전연구원 (KATRI)</strong><span>기준 연구·시험·국제조화, KICAS 제네바 사무소 — <a href="https://main.kotsa.or.kr/portal/contents.do?menuCode=01060100" target="_blank" rel="noopener">TS 연구</a> · <a href="https://kicas.katri.or.kr/info/life/citationSystem" target="_blank" rel="noopener">KICAS</a></span></div>
-          <div class="org-sep">↓</div>
-          <div class="org-item"><strong>국회 국토교통위원회</strong><span>자동차관리법 개정안(의안 2220196) 심사 중 — <a href="https://community.lawmaking.go.kr/gcom/nsmLmSts/out/2220196/detailRP" target="_blank" rel="noopener">의안 보기</a></span></div>
-          <div class="org-sep">↓</div>
-          <div class="org-item"><strong>제작사 · 수입사</strong><span>자기인증·출시</span></div>
-          <div class="org-sep">↓</div>
-          <div class="org-item"><strong>Driver</strong><span>FSD 사용 가능 여부를 체감한다</span></div>
-        </div>
-      </div>
-      <div id="panel-docs" role="tabpanel" hidden>
-        <h3 class="sub">국제기준</h3>
-        <ul class="doc-list">
-          <li><a href="https://unece.org/sites/default/files/2025-03/R171e.pdf" target="_blank" rel="noopener">UN R171 01 series 영문 (UNECE)</a></li>
-          <li><a href="https://eur-lex.europa.eu/eli/reg/2025/1899/oj/eng" target="_blank" rel="noopener">EU 2025/1899 — R171.01 (EUR-Lex)</a></li>
-          <li><a href="https://globalautoregs.com/documents/42373" target="_blank" rel="noopener">R171 02 series 제안·채택 기록 (GAR)</a></li>
-        </ul>
-        <h3 class="sub">일본 — 비교선 근거</h3>
-        <ul class="doc-list">
-          <li><a href="https://www.mlit.go.jp/jidosha/content/001843891.pdf" target="_blank" rel="noopener">MLIT 차량안전대책검토회 회의자료 — 9월 중순 개정·임의적용 (PDF)</a></li>
-        </ul>
-        <h3 class="sub">국내 법령·의안·기관</h3>
-        <ul class="doc-list">
-          <li><a href="https://www.law.go.kr/LSW/lsLinkCommonInfo.do?lsJoLnkSeq=1031833383" target="_blank" rel="noopener">자동차규칙 제89조 (국가법령정보센터)</a></li>
-          <li><a href="https://community.lawmaking.go.kr/gcom/nsmLmSts/out/2220196/detailRP" target="_blank" rel="noopener">자동차관리법 개정안 의안 2220196 (국민참여입법센터)</a></li>
-          <li><a href="https://www.molit.go.kr/USR/deptInfo/m_94/lst.jsp?DEPT_ID=1613787&DEPT_NM=%EC%9E%90%EC%9C%A8%EC%A3%BC%ED%96%89%EC%A0%95%EC%B1%85%EA%B3%BC" target="_blank" rel="noopener">국토교통부 자율주행정책과 업무</a></li>
-          <li><a href="https://kicas.katri.or.kr/info/life/citationSystem" target="_blank" rel="noopener">자동차 안전기준 종합정보시스템 (KICAS)</a></li>
-        </ul>
-        <h3 class="sub">언론</h3>
-        <ul class="doc-list">
-          <li><a href="https://v.daum.net/v/9ZP6yT6bUZ" target="_blank" rel="noopener">국토부가 밝힌 FSD 국내 기준 충돌 지점 (블로터)</a></li>
-          <li><a href="https://v.daum.net/v/UaHa6f71e4" target="_blank" rel="noopener">박상혁 의원 질의와 국토부 답변·도입 시기 (블로터)</a></li>
-          <li><a href="https://www.yna.co.kr/view/AKR20260501058600003" target="_blank" rel="noopener">FSD 무단 활성화 85건 (연합뉴스, 2026.5.4)</a></li>
-          <li><a href="https://www.hankyung.com/article/202609142445g" target="_blank" rel="noopener">국내 Tesla FSD 적용 현황 (한국경제, 2026.9.15)</a></li>
-        </ul>
-      </div>
-      <div id="panel-actions" role="tabpanel" hidden>
-        <h3 class="sub">Reduce this delay</h3>
-        <div class="ai-box">
-          <p style="margin:0;"><strong>구간:</strong> International standard → Korean rule<br /><strong>Current delay:</strong> <span data-count-from="2025-09-26">–</span>일 (측정 중)</p>
-          <p style="margin:14px 0 0;"><strong>Why?</strong> 국내 검토 → 이해관계자 의견수렴 → 기준작성 → 입법절차</p>
-          <p><strong>Benchmark: Japan.</strong> WP.29 논의 단계부터 국내 검토를 병렬로 진행하고, 일부 기준은 임의적용으로 우선 도입. 2024년 3월 합의 → 9월 국내 개정, 약 6개월.</p>
-          <ul>
-            <li>가설 1 — Pre-adoption: 순차 처리 → 병렬 처리 (UN 논의 중 국내 검토 시작)</li>
-            <li>가설 2 — Optional early adoption: 의무 시행 대기 대신 기준 충족 차량 우선 인증</li>
-          </ul>
-          <p style="margin:14px 0 0;"><strong>Potential saving:</strong> 측정 예정. 해결책을 정하지 않는다. 단축 효과를 계산한다.</p>
-        </div>
-      </div>
+      <div id="panel-people" role="tabpanel" hidden></div>
+      <div id="panel-docs" role="tabpanel" hidden></div>
+      <div id="panel-actions" role="tabpanel" hidden></div>
     </div>
   </section>
 
-  <!-- 3. A real bottleneck -->
+  <!-- 3. Investigation interpretation, rendered from the wiki -->
   <section class="block" id="bottleneck" aria-labelledby="bottleneck-title">
     <div class="wrap">
-      <div class="eyebrow">A REAL BOTTLENECK</div>
-      <h2 id="bottleneck-title">기술은 움직였다.<br />제도는 아직 따라오지 못했다.</h2>
-      <p class="lead">
-        한국의 현행 조향 안전기준은 차로변경을 <strong>운전자가 시작하는 기능</strong>으로 설계되어 있다.
-        하지만 최신 소프트웨어와 국제기준은 이미 <strong>시스템이 시작하는 차로변경</strong>을 전제로 움직이고 있다.
-      </p>
-
-      <div class="status-row">
-        <span class="status-label">STATUS</span>
-        <span class="status identified"><span class="dot" aria-hidden="true"></span>IDENTIFIED</span>
-        <span style="font-size:13px; color:var(--muted);">병목 조문 특정됨 — 국토부 2026.8.31 답변</span>
-      </div>
-
-      <div class="stats">
-        <div class="stat"><strong>79.3%</strong><span>국내 운행 테슬라 중 FSD 사용 불가 (22.9만 대 기준, 2026년 8월)</span></div>
-        <div class="stat"><strong>9.6%</strong><span>주력 차종 Model Y의 FSD 사용 가능 비율</span></div>
-        <div class="stat"><strong>85건</strong><span>FSD 무단 활성화 시도 (2026년 4월 28일 기준)</span></div>
-      </div>
-
-      <h3 class="sub">Same software. Different rules.</h3>
-      <div class="compare">
-        <div class="panel know">
-          <h3>미국산 TESLA</h3>
-          <p>한미 FTA <strong>안전기준 상호인정</strong>으로 FSD 사용 가능. 국토부가 FSD를 별도로 승인한 것이 아니다.</p>
-        </div>
-        <div class="panel dont">
-          <h3>중국 상하이산 MODEL 3 / Y</h3>
-          <p>FTA 예외 적용 불가. <strong>국내 안전기준을 직접 충족</strong>해야 해서 현재 FSD 사용 불가.</p>
-        </div>
-      </div>
-
-      <h3 class="sub">1차 병목 — 규칙의 설계 방식</h3>
-      <p class="lead" style="font-size:16px;">
-        현행 <strong>자동차규칙 제89조 2항</strong>은 조향장치가 <strong>별표 6의2</strong> 기준을 따라야 한다고 정한다.
-        기존 범주 C 자동명령조향기능은 차로변경을 이렇게 가정한다:
-        운전자가 방향지시기를 <strong>수동으로 조작</strong>하면 시스템이 차로변경을 수행한다.
-        박상혁 의원실 서면질의에 대해 국토부도 바로 이 조항 때문에 중국산 Model 3·Y에 시스템 주도 차로변경을 그대로 적용하기 어렵다고 설명했다.
-      </p>
-      <div class="compare">
-        <div class="panel dont">
-          <h3>한국 현행 규칙</h3>
-          <p><strong>Driver initiates → System assists.</strong> 운전자가 방향지시기를 직접 조작하고, 시스템이 보조한다.</p>
-        </div>
-        <div class="panel know">
-          <h3>최신 소프트웨어</h3>
-          <p><strong>System decides → initiates → Driver supervises.</strong> 경로와 교통을 판단해 시스템이 직접 시작하고, 운전자가 감독한다.</p>
-        </div>
-      </div>
-
-      <h3 class="sub">국제기준은 이미 움직였다</h3>
-      <div class="diagram">
-        <ol>
-          <li>한국 규칙 — 운전자가 방향지시등 → 시스템 차로변경</li>
-          <li>UN R171.01 (2025-09-26 발효) — system-initiated lane change 인증 가능</li>
-          <li>UN R171.02 (2026.6 WP.29 채택) — 적용 범위 정교화</li>
-          <li class="now"><span class="pill">NOW</span> 한국 — 국내 법·안전관리체계 전환 중</li>
-        </ol>
-      </div>
-
-      <h3 class="sub">2차 병목 — 인증하고 관리할 pipeline</h3>
-      <p class="lead" style="font-size:16px;">
-        별표 6의2 하나를 고치는 것으로 끝나지 않는다.
-        현행 자동차관리법에는 DCAS의 <strong>법적 정의와 제작·운행 관련 제도가 없다</strong>.
-        필요한 것은 방향지시등 자동화가 아니라 안전관리계획, 기준 적합성, 사고 관리·보고, 조사·시정까지 포함한 <strong>전체 framework</strong>다.
-        국토부는 DCAS만으로 도심 기능 전체를 수용하기 어렵다고도 밝혔다.
-      </p>
-      <p class="lead" style="font-size:16px;">
-        2026년 7월 28일 송기헌 의원 등 11인이 그 제도를 만드는 <strong>자동차관리법 개정안(의안 2220196)</strong>을 발의했고,
-        7월 29일 국토교통위원회에 회부됐다. 아직 완성된 제도가 아니다.
-        아래 일정은 국토부가 박상혁 의원실 서면질의에 밝힌 공식 절차다.
-      </p>
-      <div class="diagram">
-        <ol>
-          <li>국제기준 발효 → 적용 차종·시기 의견수렴, 약 6개월</li>
-          <li>안전기준 입안, 약 6개월</li>
-          <li>입법예고·규제심사·법제처 심사, 최소 3–4개월</li>
-          <li class="now"><span class="pill">TOTAL</span> 약 15–16개월 — 그 사이 기술과 국제기준은 다시 바뀐다</li>
-        </ol>
-      </div>
-      <p class="lead" style="font-size:16px; margin-top:20px;">
-        기술을 시험할 기준이 없어서가 아니라,
-        <strong>새 국제기준을 국내에서 인증하고 관리할 regulatory pipeline이 아직 완성되지 않았다</strong>.
-        OpenDrive가 추적하려는 것은 바로 이 간격이다.
-      </p>
-
-      <h3 class="sub">Consumers are already feeling the gap</h3>
-      <p class="lead" style="font-size:16px;">
-        쓸 수 없는 차량에서 FSD를 비공식적으로 활성화하려 한 사례가 <strong>85건</strong> 확인됐다.
-        더불어민주당 박용갑 의원은 수사 의뢰나 원격 차단 같은 사후 대응만으로는 한계가 있다며 제도 개선 필요성을 지적했다.
-      </p>
-
-      <div class="quote">How can Korea reduce the time from “international standard ready” to “safe deployment on Korean roads”?<br /><span style="font-weight:400; font-size:15px;">재는 것은 찬반이 아니라 Regulatory Lead Time — 국제기준 발표 → 국내 검토 → 법령 반영 → 인증 가능 → 실제 출시다. 다음 조사: 이 15–16개월을 줄일 수 있는 단계는 어디인가.</span></div>
-
+      <div class="eyebrow">BOTTLENECK INVESTIGATION</div>
+      <h2 id="bottleneck-title">어떤 조건이 국내 제공을 늦추는가?</h2>
+      <div id="summary-view" class="wiki-content"></div>
+      <div id="statistics-view" class="stats"></div>
+      <div id="bottleneck-view" class="wiki-content"></div>
+      <details class="evidence-notes">
+        <summary>근거의 정정 내역과 해석 범위</summary>
+        <div id="evidence-notes-view" class="wiki-content"></div>
+      </details>
       <div class="cta-row">
-        <a class="btn primary" href="https://github.com/drivekr/opendrive/issues" target="_blank" rel="noopener">GitHub에서 이어 조사하기</a>
-        <a class="btn" href="#investigation">Current Investigation 보기</a>
-      </div>
-
-      <div class="sources">
-        Sources —
-        <a href="https://v.daum.net/v/9ZP6yT6bUZ" target="_blank" rel="noopener">국토부가 밝힌 FSD 국내 기준 충돌 지점 (블로터, 2026.9)</a> ·
-        <a href="https://www.yna.co.kr/view/AKR20260501058600003" target="_blank" rel="noopener">FSD 무단 활성화 85건 (연합뉴스, 2026.5.4)</a> ·
-        <a href="https://www.hankyung.com/article/202609142445g" target="_blank" rel="noopener">국내 Tesla FSD 적용 현황 (한국경제, 2026.9.15)</a> ·
-        <a href="https://www.law.go.kr/LSW/lsLinkCommonInfo.do?lsJoLnkSeq=1031833383" target="_blank" rel="noopener">자동차규칙 제89조 (국가법령정보센터)</a> ·
-        <a href="https://eur-lex.europa.eu/eli/reg/2025/1899/oj/eng" target="_blank" rel="noopener">UN R171.01 (EUR-Lex)</a> ·
-        <a href="https://community.lawmaking.go.kr/gcom/nsmLmSts/out/2220196/detailRP" target="_blank" rel="noopener">자동차관리법 개정안 의안 2220196 (국민참여입법센터)</a> ·
-        <a href="https://v.daum.net/v/UaHa6f71e4" target="_blank" rel="noopener">박상혁 의원 질의와 국토부 답변·도입 시기 (블로터)</a>
+        <a class="btn primary" href="#questions">미해결 질문 보기</a>
+        <a class="btn" href="#leadtime">사건별 근거 보기</a>
       </div>
     </div>
   </section>
@@ -509,72 +371,22 @@
     </div>
   </section>
 
-  <!-- 5. Current Investigation -->
+  <!-- 5. Current investigation -->
   <section class="block" id="investigation" aria-labelledby="inv-title">
     <div class="wrap">
       <div class="eyebrow">CURRENT INVESTIGATION</div>
       <h2 id="inv-title">지금 조사 중인 것</h2>
-
-      <article class="card">
-        <div class="num">01 / ACTIVE INVESTIGATION</div>
-        <h3>중국에서는 가능한 도심 NOA가<br />한국에서는 왜 안 될까?</h3>
-        <p class="desc">
-          중국에서는 여러 제조사가 고도 도심 주행 기능을 판매 차량에 적용하고 있습니다.
-          한국에서는 왜 같은 수준의 기능이 제공되지 않을까요?
-        </p>
-        <div class="status-row">
-          <span class="status-label">STATUS</span>
-          <span class="status"><span class="dot" aria-hidden="true"></span>UNKNOWN</span>
-        </div>
-        <div class="tags" aria-label="가능한 병목 분야">
-          <span class="tag">Regulation</span>
-          <span class="tag">Certification</span>
-          <span class="tag">Maps</span>
-          <span class="tag">Data</span>
-          <span class="tag">Localization</span>
-          <span class="tag">Manufacturer</span>
-        </div>
-        <a class="card-link" href="https://github.com/drivekr/opendrive/issues/1" target="_blank" rel="noopener">조사 내용 보기 →</a>
-        <div class="meta">답을 정해놓고 조사하지 않습니다. 확인되지 않았다면 UNKNOWN으로 남깁니다. · Last updated Oct 2026</div>
-      </article>
-
-      <div class="next" aria-label="후속 조사">
-        <div class="next-item">
-          <span><strong>Tesla FSD.</strong> 왜 차량 생산지에 따라 한국에서 제공 기능이 다를까? <a href="#bottleneck">구체적 병목 보기 →</a></span>
-          <small>INVESTIGATING</small>
-        </div>
-        <div class="next-item">
-          <span><strong>NEXT — UN R171 / DCAS.</strong> 국제 기준과 한국 제도는 어디까지 정렬되어 있을까?</span>
-          <small>PLANNED</small>
-        </div>
-      </div>
+      <div id="investigation-view" class="wiki-content"></div>
+      <a class="card-link" href="https://github.com/drivekr/opendrive/issues" target="_blank" rel="noopener">조사에 참여하기 →</a>
     </div>
   </section>
 
-  <!-- 6. Known / Unknown -->
-  <section class="block" aria-labelledby="known-title">
+  <!-- 6. Open questions -->
+  <section class="block" id="questions" aria-labelledby="questions-title">
     <div class="wrap">
-      <div class="eyebrow">EVIDENCE</div>
-      <h2 id="known-title">아는 것과 모르는 것을 구분합니다.</h2>
-      <div class="two-col">
-        <div class="panel know">
-          <h3>WHAT WE KNOW</h3>
-          <ul>
-            <li><span class="mark">✓</span><span>중국에서 Urban NOA 상용화 사례가 존재함</span></li>
-            <li><span class="mark">✓</span><span>국제 DCAS 규정이 존재함</span></li>
-            <li><span class="mark">✓</span><span>한국에서도 ADAS 관련 제도 논의가 진행됨</span></li>
-          </ul>
-        </div>
-        <div class="panel dont">
-          <h3>WHAT WE DON'T KNOW</h3>
-          <ul>
-            <li><span class="mark">?</span><span>한국 규제가 직접 막는가?</span></li>
-            <li><span class="mark">?</span><span>제조사가 인증을 신청했는가?</span></li>
-            <li><span class="mark">?</span><span>지도 / 데이터가 병목인가?</span></li>
-            <li><span class="mark">?</span><span>단순 사업적 판단인가?</span></li>
-          </ul>
-        </div>
-      </div>
+      <div class="eyebrow">OPEN QUESTIONS</div>
+      <h2 id="questions-title">아직 확인할 질문</h2>
+      <div id="questions-view" class="wiki-content"></div>
       <p class="brand-line"><strong>Unknown stays unknown until we find evidence.</strong></p>
     </div>
   </section>
@@ -631,7 +443,7 @@
     <div class="wrap">
       <div class="eyebrow">HELP WANTED</div>
       <h2 id="help-title">혹시 이 분야를 아시나요?</h2>
-      <p class="lead">방문자가 바로 “어? 이거 내 분야인데?”라고 느끼면 됩니다.</p>
+      <p class="lead">관련 원문과 경험을 공유하고 미해결 질문을 함께 확인해주세요.</p>
       <div class="help-grid">
         <div class="help-card"><strong>Automotive Certification</strong><span>국내 인증 / 형식승인 / homologation</span></div>
         <div class="help-card"><strong>Regulation</strong><span>KMVSS / 자동차 관련 법규</span></div>
@@ -644,7 +456,7 @@
         <p><strong>전문가일 필요는 없습니다.</strong><br />관련 법 조항 하나, 회사 문서 하나, 실제 경험 하나도 도움이 됩니다.</p>
         <div class="cta-row" style="justify-content:center;">
           <a class="btn primary" href="https://github.com/drivekr/opendrive/issues" target="_blank" rel="noopener">GitHub Investigation에 참여하기</a>
-          <a class="btn" href="https://github.com/drivekr/opendrive/issues/1" target="_blank" rel="noopener">I can help — Issue #1 보기</a>
+          <a class="btn" href="#questions">미해결 질문 보기</a>
         </div>
       </div>
     </div>
@@ -673,255 +485,7 @@
   <dl id="d-fields"></dl>
 </aside>
 
-<script>
-(function () {
-  var DAYMS = 86400000;
-  var WIKI_URL = 'wiki/dcas.md';
-  var WIKI_VIEW = 'https://github.com/drivekr/opendrive/blob/main/wiki/dcas.md';
-  var STATUS = { done: 'Done', progress: 'In review', tbd: '측정 중' };
-  var LANES = [['un', 'UN / WP.29'], ['kr', 'KOREA'], ['jp', 'JAPAN']];
-
-  function days(a, b) { return Math.round((Date.parse(a) - Date.parse(b)) / DAYMS); }
-  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
-
-  function getSection(md, name) {
-    var parts = md.split(/^## /m);
-    for (var i = 0; i < parts.length; i++) {
-      if (parts[i].split('\n')[0].trim().toLowerCase() === name.toLowerCase()) return parts[i];
-    }
-    return '';
-  }
-  function getSubs(text) {
-    var parts = text.split(/^### /m), out = [];
-    for (var i = 1; i < parts.length; i++) {
-      var nl = parts[i].indexOf('\n');
-      if (nl < 0) continue;
-      out.push({ title: parts[i].slice(0, nl).trim(), body: parts[i].slice(nl + 1) });
-    }
-    return out;
-  }
-  function laneOf(t) {
-    t = t.toLowerCase();
-    if (t.indexOf('un') >= 0 || t.indexOf('wp.29') >= 0) return 'un';
-    if (t.indexOf('korea') >= 0 || t.indexOf('한국') >= 0) return 'kr';
-    if (t.indexOf('japan') >= 0 || t.indexOf('일본') >= 0) return 'jp';
-    return '';
-  }
-  function parseWhen(token) {
-    var m = token.match(/^(\d{4})(?:-(\d{2}|\?\?))?(?:-(\d{2}|\?\?))?$/);
-    if (!m) return null;
-    var approx = !(m[2] && m[3] && m[2] !== '??' && m[3] !== '??');
-    var mm = (!m[2] || m[2] === '??') ? '07' : m[2];
-    var dd = (!m[3] || m[3] === '??') ? '15' : m[3];
-    return { plot: m[1] + '-' + mm + '-' + dd, approx: approx };
-  }
-
-  function parseTimeline(md) {
-    var nodes = [];
-    getSubs(getSection(md, 'Timeline')).forEach(function (sub) {
-      var lane = laneOf(sub.title);
-      if (!lane) return;
-      sub.body.split('\n').forEach(function (ln) {
-        var m = ln.match(/^- \[([ x>])\] (.+)$/);
-        if (!m) return;
-        var dm = m[2].trim().match(/^(Pending|\d{4}(?:-(?:\d{2}|\?\?))?(?:-(?:\d{2}|\?\?))?)\s*[—–-]\s*(.+)$/u);
-        if (!dm) return;
-        var node = { lane: lane, status: m[1] === 'x' ? 'done' : (m[1] === '>' ? 'progress' : 'tbd'), detail: '', since: '' };
-        if (dm[1] === 'Pending') { node.plot = ''; node.dateLabel = 'Pending'; node.approx = false; }
-        else {
-          var w = parseWhen(dm[1]);
-          if (!w) return;
-          node.plot = w.plot; node.dateLabel = dm[1]; node.approx = w.approx;
-        }
-        var rest = dm[2];
-        var sm = rest.match(/\(since:(\d{4}-\d{2}-\d{2})\)/);
-        if (sm) { node.since = sm[1]; rest = rest.replace(sm[0], '').trim(); }
-        var segs = rest.split(/\s+[—–-]\s+/);
-        node.label = segs[0].trim();
-        node.detail = segs.slice(1).join(' — ').trim();
-        nodes.push(node);
-      });
-    });
-    return nodes;
-  }
-
-  function parseAttrs(body) {
-    var items = [], cur = null;
-    body.split('\n').forEach(function (ln) {
-      var m2 = ln.match(/^  - (.+)$/);
-      if (m2 && cur) { cur.attrs.push(m2[1].trim()); return; }
-      var m1 = ln.match(/^- (.+)$/);
-      if (m1) { cur = { name: m1[1].trim(), attrs: [] }; items.push(cur); }
-    });
-    return items;
-  }
-  function parseChecks(body) {
-    var items = [], cur = null;
-    body.split('\n').forEach(function (ln) {
-      var m2 = ln.match(/^  - (.+)$/);
-      if (m2 && cur) { cur.subs.push(m2[1].trim()); return; }
-      var m1 = ln.match(/^- \[([ x>])\] (.+)$/);
-      if (m1) { cur = { st: m1[1], text: m1[2].trim(), subs: [] }; items.push(cur); }
-    });
-    return items;
-  }
-
-  var inner = document.getElementById('tl-inner');
-  var drawer = document.getElementById('drawer');
-  var back = document.getElementById('drawer-back');
-  var EVENTS = [];
-
-  function renderTimeline() {
-    var dated = EVENTS.filter(function (e) { return e.plot; }).map(function (e) { return Date.parse(e.plot); });
-    var t0 = Math.min.apply(null, dated) - 60 * DAYMS;
-    var t1 = Date.now() + 200 * DAYMS;
-    function pos(e) {
-      if (!e.plot) return 96.5;
-      return ((Date.parse(e.plot) - t0) / (t1 - t0)) * 100;
-    }
-    var byLane = {};
-    EVENTS.forEach(function (e) { (byLane[e.lane] = byLane[e.lane] || []).push(e); });
-    Object.keys(byLane).forEach(function (lane) {
-      var last = null;
-      byLane[lane].slice().sort(function (a, b) { return (a.plot || '9999') < (b.plot || '9999') ? -1 : 1; }).forEach(function (e) {
-        e.elapsed = '';
-        var base = e.since || (last && last.plot);
-        var fuzzy = e.since ? false : (e.approx || (last && last.approx));
-        if (base) {
-          var n = days(e.plot || new Date().toISOString().slice(0, 10), base);
-          e.elapsed = (fuzzy ? '~' : '') + (e.plot ? '+' + n + ' days' : '측정 중 · ' + n + '일째');
-        }
-        if (e.plot) last = { plot: e.plot, approx: e.approx };
-      });
-    });
-    var html = '<div class="tl-years">';
-    [2024, 2025, 2026, 2027].forEach(function (y) {
-      var t = Date.parse(y + '-01-01');
-      if (t < t0 || t > t1) return;
-      html += '<span class="tl-year" style="left:' + (((t - t0) / (t1 - t0)) * 100) + '%">' + y + '</span>';
-    });
-    html += '</div>';
-    LANES.forEach(function (lane) {
-      html += '<div class="lane ' + lane[0] + '"><div class="lane-name">' + lane[1] + '</div><div class="track">';
-      var k = 0;
-      EVENTS.forEach(function (e, i) {
-        if (e.lane !== lane[0]) return;
-        var cls = 'node ' + e.status + (e.approx ? ' approx' : '') + (k % 2 ? ' up' : '');
-        k++;
-        html += '<button class="' + cls + '" style="left:' + pos(e).toFixed(2) + '%" data-i="' + i + '">'
-          + '<span class="tip">' + esc(e.label) + ' · ' + esc(e.dateLabel) + '</span>'
-          + '<span class="d"></span>'
-          + '<span class="t">' + esc(e.label) + '</span>'
-          + '<span class="dt">' + esc(e.dateLabel) + '</span>'
-          + '</button>';
-      });
-      html += '</div></div>';
-    });
-    inner.innerHTML = html;
-  }
-
-  function renderPanels(md) {
-    var people = parseAttrs(getSection(md, 'People / Organizations'));
-    document.getElementById('panel-people').innerHTML = '<div class="org">' + people.map(function (p, i, arr) {
-      return '<div class="org-item"><strong>' + esc(p.name) + '</strong><span>' + p.attrs.map(function (a) { return esc(a); }).join('<br />') + '</span></div>'
-        + (i < arr.length - 1 ? '<div class="org-sep">↓</div>' : '');
-    }).join('') + '</div>';
-
-    var docs = parseAttrs(getSection(md, 'Documents'));
-    document.getElementById('panel-docs').innerHTML = '<ul class="doc-list">' + docs.map(function (d) {
-      var url = '', note = '';
-      d.attrs.forEach(function (a) {
-        if (/^URL:\s*/.test(a)) url = a.replace(/^URL:\s*/, '');
-        else if (/^핵심:\s*/.test(a)) note = a.replace(/^핵심:\s*/, '');
-      });
-      return '<li><a href="' + url + '" target="_blank" rel="noopener">' + esc(d.name) + '</a>'
-        + (note ? '<br /><span style="font-size:13px;color:var(--muted)">' + esc(note) + '</span>' : '') + '</li>';
-    }).join('') + '</ul>';
-
-    var html = '';
-    getSubs(getSection(md, 'Korea vs Japan')).forEach(function (s, i) {
-      var lis = s.body.split('\n').filter(function (ln) { return /^- /.test(ln); }).map(function (ln) { return esc(ln.replace(/^- /, '').trim()); });
-      html += (i === 0 ? '<h3 class="sub">Korea vs Japan</h3><div class="compare">' : '')
-        + '<div class="panel ' + (i === 0 ? 'dont' : 'know') + '"><h3>' + esc(s.title) + '</h3><p>' + lis.join('<br />') + '</p></div>';
-    });
-    if (getSubs(getSection(md, 'Korea vs Japan')).length) html += '</div>';
-    var qs = getSection(md, 'Questions').split('\n').filter(function (ln) { return /^- /.test(ln); }).map(function (ln) { return ln.replace(/^- /, '').trim(); });
-    if (qs.length) {
-      html += '<h3 class="sub">Open questions</h3><div class="panel dont"><ul>' + qs.map(function (q) {
-        return '<li><span class="mark">?</span><span>' + esc(q) + '</span></li>';
-      }).join('') + '</ul></div>';
-    }
-    var acts = parseChecks(getSection(md, 'Actions'));
-    if (acts.length) {
-      html += '<h3 class="sub">Action list</h3><div class="panel know"><ul>' + acts.map(function (a) {
-        var mark = a.st === 'x' ? '✓' : (a.st === '>' ? '…' : '○');
-        return '<li><span class="mark">' + mark + '</span><span>' + esc(a.text)
-          + (a.subs.length ? '<br />' + a.subs.map(function (s) { return esc(s); }).join('<br />') : '') + '</span></li>';
-      }).join('') + '</ul></div>';
-    }
-    document.getElementById('panel-actions').innerHTML = html;
-  }
-
-  function close() { drawer.hidden = true; back.hidden = true; }
-  document.getElementById('drawer-close').addEventListener('click', close);
-  back.addEventListener('click', close);
-  document.addEventListener('keydown', function (ev) { if (ev.key === 'Escape') close(); });
-
-  inner.addEventListener('click', function (ev) {
-    var b = ev.target.closest('.node');
-    if (!b) return;
-    var e = EVENTS[+b.getAttribute('data-i')];
-    if (!e) return;
-    var laneName = '';
-    LANES.forEach(function (l) { if (l[0] === e.lane) laneName = l[1]; });
-    document.getElementById('d-event').textContent = e.label;
-    var rows = [
-      ['Date', e.dateLabel], ['Status', STATUS[e.status] + (e.approx ? ' (연·월 단위)' : '')],
-      ['Lane', laneName], ['Elapsed', e.elapsed], ['Detail', e.detail],
-      ['Wiki', '<a href="' + WIKI_VIEW + '">wiki/dcas.md 원문 보기</a>']
-    ];
-    document.getElementById('d-fields').innerHTML = rows
-      .filter(function (r) { return r[1]; })
-      .map(function (r) { return '<dt>' + r[0] + '</dt><dd>' + r[1] + '</dd>'; }).join('');
-    drawer.hidden = false; back.hidden = false;
-  });
-
-  document.querySelectorAll('.tab').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      document.querySelectorAll('.tab').forEach(function (b) { b.setAttribute('aria-selected', 'false'); });
-      btn.setAttribute('aria-selected', 'true');
-      ['timeline', 'people', 'docs', 'actions'].forEach(function (n) {
-        document.getElementById('panel-' + n).hidden = (n !== btn.getAttribute('data-tab'));
-      });
-    });
-  });
-
-  function updateCounts() {
-    var today = new Date().toISOString().slice(0, 10);
-    document.querySelectorAll('[data-count-from]').forEach(function (s) {
-      s.textContent = days(today, s.getAttribute('data-count-from'));
-    });
-  }
-
-  function fail() {
-    var msg = '위키를 불러오지 못했습니다. <a href="' + WIKI_VIEW + '">wiki/dcas.md 직접 보기</a>';
-    ['tl-inner', 'panel-people', 'panel-docs', 'panel-actions'].forEach(function (id) {
-      var el = document.getElementById(id);
-      if (el) el.innerHTML = '<p class="lane-note">' + msg + '</p>';
-    });
-  }
-
-  fetch(WIKI_URL).then(function (r) {
-    if (!r.ok) throw new Error('wiki');
-    return r.text();
-  }).then(function (md) {
-    EVENTS = parseTimeline(md);
-    renderTimeline();
-    renderPanels(md);
-    updateCounts();
-  }).catch(fail);
-})();
-</script>
+<script src="assets/wiki-view.js"></script>
 
 </body>
 </html>

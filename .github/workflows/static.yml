@@ -31,6 +31,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Set up Node.js for evidence and renderer checks
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Check wiki evidence links and renderer
+        run: node --test tests/wiki-view.test.cjs
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact

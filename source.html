@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>근거 수집기록 — OpenDrive Korea</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #fafafa; color: #111; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; line-height: 1.75; }
+    main { max-width: 880px; margin: 0 auto; padding: 40px 24px 72px; }
+    a { color: #1d4ed8; overflow-wrap: anywhere; }
+    h1 { font-size: 28px; line-height: 1.4; }
+    .note { color: #6b7280; font-size: 14px; }
+    pre { white-space: pre-wrap; overflow-wrap: anywhere; background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; font: inherit; font-size: 15px; }
+    li { margin: 8px 0; }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+  <main>
+    <a href="index.html#leadtime">← 타임라인으로 돌아가기</a>
+    <h1>근거 수집기록</h1>
+    <p class="note">raw에 보존한 기록을 그대로 표시합니다. 기록에 연결된 외부 원문과 확인 범위를 함께 살펴보세요.</p>
+    <pre id="record">수집기록을 읽는 중…</pre>
+    <section id="originals" hidden>
+      <h2>원문 출처</h2>
+      <ul id="source-links"></ul>
+    </section>
+    <p><a href="https://github.com/drivekr/opendrive/blob/main/wiki/dcas.md#evidence-notes">LLM의 해석·정정 내역 보기</a></p>
+  </main>
+  <script src="assets/source-view.js"></script>
+</body>
+</html>
